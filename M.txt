@@ -296,3 +296,35 @@ Para valores y datos dinámicos se utilizaran "state" de los que hablaremos post
 
 
 
+ENCABEZADO DEL PROYECTO
+
+Empezamos a definir la forma de nuestro proyecto en cuestión. 
+
+Editamos archivo App.js
+
+
+
+
+
+ARCHIVOS ESTÁTICOS EN LA CARPETA PUBLIC
+
+DESPLEGAR ARCHIVOS ESTÁTICOS EN NUESTRA APLICACIÓN
+
+Nos bajamos una imagen de pexels. Vamos a integrala en nuestro proyecto
+
+Creamos la carpeta "images" dentro de la carpeta "public"
+
+
+
+App.js
+
+.................
+
+<Title></Title> 
+<button>Crear Cuenta Gratuita</button>
+<img src={process.env.PUBLIC_URL + '/images/places1.jpeg'} height="200"/>
+
+.................
+
+
+
