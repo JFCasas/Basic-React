@@ -10,12 +10,14 @@ export default class Title extends React.Component {
 
 				<h1>Places</h1>
 				<p>Descubre lugares de manera simple</p>
-				
-
+			
 			</div>
-		
 		)
 	}
 
+}
 
+export function hola(){
+	
+	return "hola"
 }

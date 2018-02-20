@@ -172,4 +172,61 @@ export default App;
 
 
 
+
+
 IMPORTAR Y EXPORTAR MÓDULOS ES6
+
+"import" nos permite traer módulos externos para utilizarlos en nuestro desarrollo
+
+Observamos 2 maneras de importar
+
+import React from 'react'
+
+import React, { Component } from 'react';
+
+
+Depende de la manera de como hemos exportado. Existe como hemos visto anteriormente la posibilidad de exportar un módulo por defecto.
+
+Supongamos que en Title.js tenemos lo siguiente;
+
+
+export function hola(){
+	
+	return "hola"
+}
+
+En App.js
+
+import {hola} from './components/Title'
+
+class App extends Component {
+
+  
+  
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+
+          {hola()}
+          
+          <Title></Title> 
+          
+        </header>
+
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+      </div>
+
+
+    );
+  }
+}
+
+export default App;
+
+
+Sólo puede haber un único elemento que se exporta por defecto con el key "default"
+
