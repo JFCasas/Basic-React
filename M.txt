@@ -111,3 +111,65 @@ Se van a poder establecer ciclos, condiciones........
 
 
 
+PRIMER COMPONENTE
+
+Dentro de src creamos la carpeta components
+
+Creamos un archivo con nombre Title.js
+
+
+import React from 'react'
+
+export default class Title extends React.Component {
+
+	render(){
+
+		return (
+
+			<div>
+				<h1>Places</h1>
+				<p>Descubre lugares de manera simple</p>
+			</div>
+		)
+	}
+}
+
+Una vez creado nuestro componente hacemos uso del mismo:
+
+App.js
+
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+import Title from './components/Title'
+
+class App extends Component {
+
+  
+  
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          
+          <Title></Title> 
+          
+        </header>
+
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+      </div>
+
+
+    );
+  }
+}
+
+export default App;
+
+
+
+IMPORTAR Y EXPORTAR MÓDULOS ES6
