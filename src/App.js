@@ -4,26 +4,54 @@ import './App.css';
 
 import Title from './components/Title'
 
-
-
 class App extends Component {
 
-  
-  
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
 
-          <Title title="PEPEHILLO"></Title> 
+      <section>
+  
+        <div>
           
-        </header>
+          <div>
 
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+            <Title></Title> 
+            <button>Crear Cuenta Gratuita</button>
+            <div>
+      
+              <ul>
+                
+                <li>
+                  
+                  <h3>Calificaciones con emociones</h3>
+                  <p>Califica tus lugares con experiencias, no con números</p>
+                
+                </li>
+
+                <li>
+                  
+                  <h3>No Internet. No problemas</h3>
+                  <p>Esta página funciona sin Internet o en conexiones lentas</p>
+                
+                </li>
+
+                <li>
+                  
+                  <h3>Tus lugares favoritos</h3>
+                  <p>Define tu lista de sitios favoritos</p>
+                
+                </li>
+              
+              </ul>
+            
+            </div>
+
+          </div>
+        
+        </div>
+
+      </section>
+      
 
 
     );
