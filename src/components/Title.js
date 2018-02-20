@@ -8,7 +8,7 @@ export default class Title extends React.Component {
 
 			<div>
 
-				<h1>Places</h1>
+				<h1>{this.props.title}</h1>
 				<p>Descubre lugares de manera simple</p>
 			
 			</div>
@@ -17,7 +17,3 @@ export default class Title extends React.Component {
 
 }
 
-export function hola(){
-	
-	return "hola"
-}

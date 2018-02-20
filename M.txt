@@ -230,3 +230,69 @@ export default App;
 
 Sólo puede haber un único elemento que se exporta por defecto con el key "default"
 
+
+
+DATOS VIA PROPS
+
+Props son las propiedades  de un componente que enviamos cuando el componente se genera.
+
+Podríamos hacer algo de la siguiente manera:
+
+Title.js
+
+import React from 'react'
+
+export default class Title extends React.Component {
+
+	render(){
+
+		return (
+
+			<div>
+
+				<h1>{this.props.title}</h1>
+				<p>Descubre lugares de manera simple</p>
+			
+			</div>
+		)
+	}
+
+}
+
+App.js
+
+class App extends Component {
+
+  
+  
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+
+          <Title title="PEPEHILLO"></Title> 
+          
+        </header>
+
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+      </div>
+
+
+    );
+  }
+}
+
+export default App;
+
+
+Principal característica de los props de un componente es que son inmutables. 
+
+Ese valor no se puede modificar. 
+
+Para valores y datos dinámicos se utilizaran "state" de los que hablaremos posteriormente.
+
+
+
