@@ -15,15 +15,15 @@ class App extends Component {
       numero: 0
     }
 
-    setInterval(()=>{
+  }
 
-      this.setState({
+  updateNumero(){
+
+    this.setState({
 
         numero: this.state.numero + 1
       
       })
-    
-    },1000)
   }
 
   render() {
@@ -36,9 +36,13 @@ class App extends Component {
           <div>
 
             <Title></Title> 
+            
             <h2>{this.state.numero}</h2>
-            <button>Crear Cuenta Gratuita</button>
+            
+            <button onClick={()=>{this.updateNumero()}}  >Crear Cuenta Gratuita</button>
+            
             <img src={process.env.PUBLIC_URL + '/images/places1.jpeg'} height="200"/>
+            
             <div>
       
               <ul>

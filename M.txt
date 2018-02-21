@@ -372,3 +372,26 @@ class App extends Component {
   render() {
 
   ............
+
+
+
+
+EVENTOS EN COMPONENTES
+
+
+Añadimos el evento al button de la siguiente manera:
+
+<button onClick={()=>{this.updateNumero()}}  >Crear Cuenta Gratuita</button>
+
+
+Creamos la función de la siguiente manera:
+
+updateNumero(){
+
+    this.setState({
+
+        numero: this.state.numero + 1
+      
+	})
+}
+
