@@ -6,6 +6,26 @@ import Title from './components/Title'
 
 class App extends Component {
 
+  constructor(props){
+
+    super(props)
+
+    this.state = {
+
+      numero: 0
+    }
+
+    setInterval(()=>{
+
+      this.setState({
+
+        numero: this.state.numero + 1
+      
+      })
+    
+    },1000)
+  }
+
   render() {
     return (
 
@@ -16,6 +36,7 @@ class App extends Component {
           <div>
 
             <Title></Title> 
+            <h2>{this.state.numero}</h2>
             <button>Crear Cuenta Gratuita</button>
             <img src={process.env.PUBLIC_URL + '/images/places1.jpeg'} height="200"/>
             <div>

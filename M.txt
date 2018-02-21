@@ -328,3 +328,47 @@ App.js
 
 
 
+STATE DE UN COMPONENTE
+
+Damos un valor por default a nuestro state. Esto lo hacemos desde el constructor.
+
+Recibe un argumento con los props del componente. Esos props se pasan al constructor del padre, en este caso la clase "Component" utilizando el keyword "super"
+
+Iniciamos el objeto state que guarda datos que se pueden actualizar mediante se está usando nuestro componente.
+
+Colocamos un número que inicia en 0
+
+
+La única forma en que debemos actualizar un valor que forma parte del estado es mediante la función setState. El parámetro es un JSON
+
+Tenemos el siguiente código:
+
+App.js
+
+...........
+
+class App extends Component {
+
+  constructor(props){
+
+    super(props)
+
+    this.state = {
+
+      numero: 0
+    }
+
+    setInterval(()=>{
+
+      this.setState({
+
+        numero: this.state.numero + 1
+      
+      })
+    
+    },1000)
+  }
+
+  render() {
+
+  ............
