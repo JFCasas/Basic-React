@@ -473,4 +473,18 @@ class App extends Component {
 
 
 
-  
+
+ESTILOS
+
+Vamos a tener dos maneras de aplica estilos.
+
+La primera es la utilización del atributo "style"
+
+La otra es la utilización de "className"
+
+
+
+
+
+
+

@@ -34,9 +34,9 @@ class App extends Component {
 
       <section>
   
-        <div>
+        <div className = "Header-background">
           
-          <div>
+          <div style={{ "width":"80%", "margin" : "0 auto", "background-color": "#eee"}} >
 
             <Title></Title> 
             
