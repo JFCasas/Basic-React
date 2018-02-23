@@ -395,3 +395,82 @@ updateNumero(){
 	})
 }
 
+
+
+BIND
+
+
+---------------------------------
+
+Es un método que poseen todas las funciones en javascript
+
+Es una solución más elegante, ya que nuestra función executor queda de la siguiente forma:
+
+function executor(f){
+	
+	f()
+
+}
+
+var objeto = {
+
+	nombre: "Fernando",
+	apellido: "Casas",
+	escribeNombre: function(){
+
+		console.log("Tu nombre es " + this.nombre + " " +  this.apellido)
+	}
+}
+
+var avion = {
+
+	modelo: "Airbus",
+	diModelo: function(){
+
+		console.log("El modelo del avión es: " + this.modelo)
+	}
+
+
+}
+
+executor(objeto.escribeNombre.bind(objeto));
+
+executor(avion.diModelo.bind(avion));
+
+Como vemos en el ejemplo mediante "bind" podemos determianar únivoacamente el valor de this
+
+Aplicado a nuestro código nos permite escribirlo de una manera más elegante bastante acepatada por la comunidad en React
+
+class App extends Component {
+
+  constructor(props){
+
+    super(props)
+
+    this.state = {
+
+      numero: 0
+    }
+
+    this.updateNumero = this.updateNumero.bind(this)
+
+  }
+
+  updateNumero(){
+
+      this.setState({
+
+        numero: this.state.numero + 1
+
+            
+      })
+  }
+
+  .....................
+  .....................
+
+  <button onClick={this.updateNumero}  >Crear Cuenta Gratuita</button>
+
+
+
+  

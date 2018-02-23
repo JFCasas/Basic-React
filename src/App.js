@@ -15,14 +15,17 @@ class App extends Component {
       numero: 0
     }
 
+    this.updateNumero = this.updateNumero.bind(this)
+
   }
 
   updateNumero(){
 
-    this.setState({
+      this.setState({
 
         numero: this.state.numero + 1
-      
+
+            
       })
   }
 
@@ -39,7 +42,7 @@ class App extends Component {
             
             <h2>{this.state.numero}</h2>
             
-            <button onClick={()=>{this.updateNumero()}}  >Crear Cuenta Gratuita</button>
+            <button onClick={this.updateNumero}  >Crear Cuenta Gratuita</button>
             
             <img src={process.env.PUBLIC_URL + '/images/places1.jpeg'} height="200"/>
             
