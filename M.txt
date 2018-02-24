@@ -486,5 +486,57 @@ La otra es la utilización de "className"
 
 
 
+MATERIAL DESIGN
+
+npm install material-ui --save
+
+Beginning with v0.15.0, Material-UI components require a theme to be provided. The quickest way to get up and running is by using the MuiThemeProvider to inject the theme into your application context. Following that, you can use any of the components as demonstrated in our documentation.
+
+
+Todos los componentes que vamos a poder usar se encuentran en la página de materia-ui
+
+
+Primer componente que importamos:
+
+import RaisedButton from 'material-ui/RaisedButton';
+
+<RaisedButton label="Crear Cuenta Gratuita" secondary={true} onClick={this.updateNumero}  />
+
+
+
+Colores Material Design para nuestros cpmponentes
+
+
+import {indigo400} from 'material-ui/styles/colors'
+
+<div style={{"background-color":indigo400}}>
+
+
+
+Card
+
+mport {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+
+<Card style={{"font-family":"'Roboto', sans-serif"}}>
+  <CardHeader  style={{"font-weight":"bold"}}
+
+    title="Calificaciones con emociones"
+    avatar="images/experiencias.jpeg"
+    
+  />
+  <CardActions>
+    <FlatButton label="Action1" />
+    <FlatButton label="Action2" />
+  </CardActions>
+  <CardText >
+
+    
+    Califica tus lugares con experiencias, no con números
+  
+  </CardText>
+</Card>
+
+
+
 
 

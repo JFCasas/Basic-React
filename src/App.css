@@ -1,5 +1,27 @@
 .Header-background{
 
-  background-color: black;
+  background-color: white;
 
 }
+
+.container{
+
+	padding: 5em;
+}
+
+.titulo{
+
+	text-align: center;
+	font-family: 'Pacifico', cursive;
+	font-size: 1.5em;
+
+}
+
+.lista{
+
+	display: flex;
+	justify-content: space-around;
+	font-weight: bold;
+}
+
+
