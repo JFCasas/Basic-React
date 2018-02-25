@@ -659,3 +659,25 @@ index.js:2178 Warning: Unsupported style property margin-top. Did you mean margi
     in App (at index.js:7)
 
 
+
+
+
+COMPONENTES PÁGINA
+
+Vamos a refactorizar nuestro código haciendo que la página "home" de nuestra aplicación sea cargado como un componente.
+
+
+Creamos la carpeta pages
+
+Dentro de esta carpeta creamos el archivo Home.js
+
+Tenemos que importarlo de la siguiente manera:
+
+import Home from './pages/Home'
+
+Llevamos a Home.js todo el código que estaba antes en App.js
+
+
+
+
+
