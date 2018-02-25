@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
 
 
 import {indigo400,red500, yellow500, blue500, grey50} from 'material-ui/styles/colors'
 
 
 import Title from './components/Title'
+import data from './requests/places'
 
 import logo from './logo.svg';
 import './App.css';
@@ -27,6 +28,8 @@ class App extends Component {
 
     this.updateNumero = this.updateNumero.bind(this)
 
+    console.log(data)
+
   }
 
   updateNumero(){
@@ -37,6 +40,30 @@ class App extends Component {
 
             
       })
+  }
+
+  places(){
+
+    return data.places.map(place=>{
+
+      return(
+
+        <Card style={{"font-family":"'Roboto', sans-serif"}}>
+          
+          <CardMedia >
+
+            <img className = "imagen"  src={process.env.PUBLIC_URL + place.imageUrl}  />
+          
+          </CardMedia>
+
+          <CardTitle title={place.title}></CardTitle>
+
+          <CardText >{place.description}</CardText>
+        
+        </Card>
+      )
+
+    })
   }
 
   render() {
@@ -115,8 +142,15 @@ class App extends Component {
             
             </div>
 
+            <div className = "places">
+
+              {this.places()}
+              
+
+            </div> 
+
           </div>
-        
+
         </div>
 
       </MuiThemeProvider>

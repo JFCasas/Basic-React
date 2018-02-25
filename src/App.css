@@ -24,4 +24,16 @@
 	font-weight: bold;
 }
 
+.places{
+
+	display: flex;
+	justify-content: space-between;
+	font-weight: bold;
+}
+
+.imagen{
+
+	height: 15em;
+}
+
 

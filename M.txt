@@ -539,4 +539,70 @@ mport {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
 
 
+MOCKING DE DATOS
 
+Creamos una carpeta requests dentro de src
+
+Dentro de esta carpeta creamos un archivo places.js donde creamos nuestros datos
+
+
+Realizamos el import en App.js
+
+import data from './requests/places'
+
+
+Vamos a ver que tiene data haciendo un console.log en el constructor
+
+Object
+  places :
+  
+  Array(3)
+    0
+    :
+    {imageUrl: "/images/place-1.jpeg", title: "Primer negocio", descripcion: "Primera descripción de mi negocio"}
+    1
+    :
+    {imageUrl: "/images/place-2.jpeg", title: "Segundo negocio", descripcion: "Segunda descripción de mi negocio"}
+    2
+    :
+    {imageUrl: "/images/place-3.jpeg", title: "Tercer negocio", descripcion: "Tercera descripción de mi negocio"}
+
+
+Realizamos la siguiente función
+
+places(){
+
+    return data.places.map(place=>{
+
+      return(
+
+        <Card style={{"font-family":"'Roboto', sans-serif"}}>
+          
+          <CardMedia >
+
+            <img className = "imagen"  src={process.env.PUBLIC_URL + place.imageUrl}  />
+          
+          </CardMedia>
+
+          <CardTitle title={place.title}></CardTitle>
+
+          <CardText >{place.description}</CardText>
+        
+        </Card>
+      )
+
+    })
+  }
+
+  La utilizamos:
+
+  <div className = "places">
+
+    {this.places()}
+    
+
+  </div> 
+
+
+
+  
