@@ -605,4 +605,57 @@ places(){
 
 
 
-  
+
+
+RESOLUCIÓN ERRORES EN CONSOLA
+
+Si echamos un vistazo a la consola vamos a ver diferentes errores que vamosa ir subsanado.
+
+Errores en consola.
+
+Warning: Each child in an array or iterator should have a unique "key" prop.
+
+Check the render method of `App`. See https://fb.me/react-warning-keys for more information.
+    in Card (at App.js:51)
+    in App (at index.js:7)
+__stack_frame_overlay_proxy_console__ @ index.js:2178
+index.js:2178 Warning: Unsupported style property font-weight. Did you mean fontWeight?
+    in div (created by CardHeader)
+    in CardHeader (at App.js:93)
+    in div (created by Card)
+    in div (created by Paper)
+    in Paper (created by Card)
+    in Card (at App.js:92)
+    in ul (at App.js:90)
+    in div (at App.js:88)
+    in div (at App.js:77)
+    in div (at App.js:75)
+    in MuiThemeProvider (at App.js:73)
+    in App (at index.js:7)
+__stack_frame_overlay_proxy_console__ @ index.js:2178
+index.js:2178 Warning: Unsupported style property font-family. Did you mean fontFamily?
+    in div (created by Paper)
+    in Paper (created by Card)
+    in Card (at App.js:92)
+    in ul (at App.js:90)
+    in div (at App.js:88)
+    in div (at App.js:77)
+    in div (at App.js:75)
+    in MuiThemeProvider (at App.js:73)
+    in App (at index.js:7)
+__stack_frame_overlay_proxy_console__ @ index.js:2178
+index.js:2178 Warning: Unsupported style property background-color. Did you mean backgroundColor?
+    in div (at App.js:88)
+    in div (at App.js:77)
+    in div (at App.js:75)
+    in MuiThemeProvider (at App.js:73)
+    in App (at index.js:7)
+__stack_frame_overlay_proxy_console__ @ index.js:2178
+index.js:2178 Warning: Unsupported style property margin-top. Did you mean marginTop?
+    in div (at App.js:88)
+    in div (at App.js:77)
+    in div (at App.js:75)
+    in MuiThemeProvider (at App.js:73)
+    in App (at index.js:7)
+
+

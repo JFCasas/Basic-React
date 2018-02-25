@@ -44,11 +44,11 @@ class App extends Component {
 
   places(){
 
-    return data.places.map(place=>{
+    return data.places.map((place,index)=>{
 
       return(
 
-        <Card style={{"font-family":"'Roboto', sans-serif"}}>
+        <Card style={{"fontFamily":"'Roboto', sans-serif"}} key={index}>
           
           <CardMedia >
 
@@ -85,12 +85,12 @@ class App extends Component {
             </div>
 
             
-            <div style={{"background-color":grey50, "padding":"5em","margin-top":"1em"}}>
+            <div style={{"backgroundColor":grey50, "padding":"5em","marginTop":"1em"}}>
       
               <ul className = "lista">
                 
-                <Card style={{"font-family":"'Roboto', sans-serif"}}>
-                  <CardHeader  style={{"font-weight":"bold"}}
+                <Card style={{"fontFamily":"'Roboto', sans-serif"}}>
+                  <CardHeader  style={{"fontWeight":"bold"}}
 
                     title="Calificaciones con emociones"
                     avatar="images/experiencias.jpeg"
@@ -108,8 +108,8 @@ class App extends Component {
                   </CardText>
                 </Card>
 
-                <Card style={{"font-family":"'Roboto', sans-serif"}}>
-                  <CardHeader  style={{"font-weight":"bold"}}
+                <Card style={{"fontFamily":"'Roboto', sans-serif"}}>
+                  <CardHeader  style={{"fontWeight":"bold"}}
                     title="No Internet. No problemas"
                     avatar="images/internet.jpeg"
                     
@@ -123,8 +123,8 @@ class App extends Component {
                   </CardText>
                 </Card>
 
-                <Card style={{"font-family":"'Roboto', sans-serif"}}>
-                  <CardHeader  style={{"font-weight":"bold"}}
+                <Card style={{"fontFamily":"'Roboto', sans-serif"}}>
+                  <CardHeader  style={{"fontWeight":"bold"}}
                     title="Tus lugares favoritos"
                     avatar="images/favoritos.jpeg"
                     
