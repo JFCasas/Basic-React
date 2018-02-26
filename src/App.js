@@ -42,14 +42,9 @@ class App extends Component {
 
       <MuiThemeProvider>
 
-        <Home></Home>
+        <Home ></Home>
   
-        
-
       </MuiThemeProvider>
-      
-
-
     );
   }
 }

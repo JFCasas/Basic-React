@@ -4,11 +4,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
 
-
 import {indigo400,red500, yellow500, blue500, grey50} from 'material-ui/styles/colors'
 
 import Title from '../components/Title'
 import data from '../requests/places'
+import PlaceCard from '../components/PlaceCard'
 
 export default class Home extends React.Component {
 
@@ -18,19 +18,7 @@ export default class Home extends React.Component {
 
 	      return(
 
-	        <Card style={{"fontFamily":"'Roboto', sans-serif"}} key={index}>
-	          
-	          <CardMedia >
-
-	            <img className = "imagen"  src={process.env.PUBLIC_URL + place.imageUrl}  />
-	          
-	          </CardMedia>
-
-	          <CardTitle title={place.title}></CardTitle>
-
-	          <CardText >{place.description}</CardText>
-	        
-	        </Card>
+	        <PlaceCard place={place} index={index}></PlaceCard>
 	      )
 
 	    })
@@ -118,7 +106,11 @@ export default class Home extends React.Component {
 
 	            </div> 
 
+	            
+
 	          </div>
+
+
 
 	        </div>
 		)
