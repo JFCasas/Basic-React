@@ -1,8 +1,26 @@
 import React from 'react'
 
 import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+
 
 export default class PlaceCard extends React.Component {
+
+	constructor(props){
+
+    	super(props)
+
+    	this.state = {
+
+      		numero: 0
+    	}
+
+    	
+
+  	}
+
+
+
 
 	render(){
 
@@ -19,6 +37,11 @@ export default class PlaceCard extends React.Component {
 	          <CardTitle title={this.props.place.title}></CardTitle>
 
 	          <CardText >{this.props.place.description}</CardText>
+
+	          <CardActions style={{"textAlign": "right"}}>
+                <FlatButton label="Ver mas....." secondary={true}/>
+                <FlatButton label="Ocultar" secondary={true} onClick={()=> this.props.onRemove(this.props.place)}   />
+              </CardActions>
 	        
 	        </Card>
      	)

@@ -742,4 +742,69 @@ export default class PlaceCard extends React.Component {
 
 
 
+ACTUALIZAR LA VISTA
+
+Incorporamos dos botones a cada uno de los negocios
+
+<CardActions style={{"textAlign": "right"}}>
+  <FlatButton label="Ver mas....." secondary={true}/>
+  <FlatButton label="Ocultar" secondary={true}/>
+</CardActions>
+
+
+Cuando demos en ocultar tiene que desaparecer la tarjeta.
+
+Vamos a manipular el arreglo places
+
+
+Tenemos que enviar una funcion desde el padre al hijo. Lo podemos hacer de nuevo utilzando props
+
+
+Mandamos una función onRemove que es hidePlace
+
+places(){
+
+      return this.state.places.map((place,index)=>{
+
+        return(
+
+          <PlaceCard place={place} index={index} onRemove={this.hidePlace}></PlaceCard>
+        )
+
+      })
+  }
+
+  hidePlace(place){
+
+    this.setState({
+
+      places : this.state.places.filter(el => el != place)
+
+    })
+  }
+
+
+Cuando ejecutemos hidePlace desde el componente PlaceCard un efecto colateral es que this va a ser reasignado
+
+Una manera de evitar esto es medianste bind
+
+this.hidePlace = this.hidePlace.bind(this)
+
+
+Finalmente en nuestro componente:
+
+<CardActions style={{"textAlign": "right"}}>
+  <FlatButton label="Ver mas....." secondary={true}/>
+  <FlatButton label="Ocultar" secondary={true} onClick={()=> this.props.onRemove(this.props.place)}   />
+</CardActions>
+
+
+
+
+
+
+
+
+
+
 
