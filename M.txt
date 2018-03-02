@@ -742,7 +742,7 @@ export default class PlaceCard extends React.Component {
 
 
 
-ACTUALIZAR LA VISTA
+ACTUALIZAR LA VISTA. OCULTACION DE NEGOCIOS
 
 Incorporamos dos botones a cada uno de los negocios
 
@@ -802,6 +802,87 @@ Finalmente en nuestro componente:
 
 
 
+
+
+
+
+INSTALAR Y CONFIGURAR REACT TRANSITION GROUP
+
+https://reactcommunity.org/react-transition-group/
+
+npm install react-transition-group --save
+
+
+
+DEFINIR TRANSICION CSS
+
+Llamamos a la animación fade-scale
+
+La transicion va a durar 300 ms
+
+Para empezar la opacidad va a estar en 0 (Totalmente transparente)
+
+La escala en 0 (No se ve)
+
+
+Definimos la animación de la siguiente manera:
+
+App.css
+
+.fade-scale-enter {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.fade-scale-enter.fade-scale-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.fade-scale-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fade-scale-exit.fade-scale-exit-active {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+
+
+
+
+
+CSSTransition
+
+
+Vamos a llevar a cabo la animación de PlaceCard
+
+import CSSTransition from 'react-transition-group/CSSTransition'
+
+
+Lo establecemos como wraper de todo el elemento que queremos animar
+
+<CSSTransition timeout = {300}  classNames = 'fade-scale' in = {this.state.show}  >
+
+timeout   Indica cuanto va a durar la animación.
+
+classNames que contiene el nombre del efecto, en nuestro caso fade-scale
+
+También tenemos un prop in que define si esta entrando o saliendo el elemento
+
+
+Hacenmos que el prop "in" sea igual al cambio de una propiedad del estado del componente
+
+ a la cual llamamos "show"
+
+
+Definimos en el constructor:
+
+setInterval(()=>this.setState({show: !this.state.show}),1000)
 
 
 
