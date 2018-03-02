@@ -1,5 +1,7 @@
 import React from 'react'
 
+import TransitionGroup from 'react-transition-group/TransitionGroup'
+
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
@@ -9,6 +11,8 @@ import {indigo400,red500, yellow500, blue500, grey50} from 'material-ui/styles/c
 import Title from '../components/Title'
 import data from '../requests/places'
 import PlaceCard from '../components/PlaceCard'
+
+import Board from '../components/Board'
 
 export default class Home extends React.Component {
 
@@ -122,12 +126,19 @@ export default class Home extends React.Component {
 	            
 	            </div>
 
-	            <div className = "places">
+	            <TransitionGroup className = "places">
 
 	              {this.places()}
 	              
 
-	            </div> 
+	            </TransitionGroup>
+
+	            <div>
+
+	            	<Board></Board>
+	            	
+
+	            </div>
 
 	            
 

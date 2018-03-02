@@ -14,11 +14,10 @@ export default class PlaceCard extends React.Component {
 
     	this.state = {
 
-      		numero: 0,
-      		show : true
+      		numero: 0
       	}
 
-      	setInterval(()=>this.setState({show: !this.state.show}),1000)
+
 
     }
 
@@ -26,7 +25,7 @@ export default class PlaceCard extends React.Component {
 
 		return (
 
-			<CSSTransition timeout = {300}  classNames = 'fade-scale' in = {this.state.show}  >
+			<CSSTransition timeout = {300}  classNames = 'fade-scale' in = {this.props.in}  >
 
 		 		<Card style={{"fontFamily":"'Roboto', sans-serif"}} key={this.props.index}>
 		          

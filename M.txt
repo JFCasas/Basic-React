@@ -889,3 +889,27 @@ setInterval(()=>this.setState({show: !this.state.show}),1000)
 
 
 
+ANIMAR UN GRUPO DE ELEMENTOS
+
+
+Quitamos la función  setInterval
+
+El valor de in pasa a ser el siguiente:
+
+in = {this.props.in}. Dejamos que el componente padre lo inserte al componente hijo
+
+
+
+Importamos TransitionGroup en el componente Home
+
+import TransitionGroup from 'react-transition-group/TransitionGroup'
+
+
+Finalmente:
+
+<TransitionGroup className = "places">
+
+  {this.places()}
+  
+
+</TransitionGroup> 

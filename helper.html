@@ -42,5 +42,10 @@
 </section>
 
 
+{children}
+<button onClick={onRemove}>Remove</button>
+
+<FlatButton label="Ocultar" secondary={true} onClick={()=> this.props.onRemove(this.props.place)}   />
+
 
 
