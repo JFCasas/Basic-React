@@ -929,3 +929,94 @@ Falla de nuevo al eliminarlos.
 
 Dejo el código para que funcione de manera correcta en la eliminación de los negocios
 
+
+
+
+
+REACT ROUTER
+
+npm install react-router-dom
+
+Primero vamos a realizar un pequeño ejemplo y luego lo integramos en nuestra aplicación
+
+App.js
+
+Llevamos a cabo el import
+
+import {
+
+  BrowserRouter as Router,
+  Link,
+  Route
+
+} from 'react-router-dom';
+
+
+
+render() {
+    
+    return (
+
+      <MuiThemeProvider>
+
+        <Router>
+
+          <Route exact path="/" component={Home}></Route>
+
+          
+        </Router>
+
+        
+  
+      </MuiThemeProvider>
+    );
+}
+
+Creamos una página "login" con un "Hola Mundo" para comprobar el correcto funcionamiento
+
+Nos queda de la siguiente manera la parte que nos interesa:
+
+App.js
+
+..........
+
+import Login from './pages/Login'
+
+...........
+
+render() {
+    
+    return (
+
+      <MuiThemeProvider>
+
+        <Router>
+
+          <div>
+
+            <Link to="/login">Login</Link>
+
+            <Link to="/">Home</Link>
+
+            <Route exact path="/" component={Home}></Route>
+            <Route path="/login" component={Login}></Route>
+
+          </div>
+
+          
+
+          
+        
+        </Router>
+
+        
+  
+      </MuiThemeProvider>
+    );
+}
+
+
+
+
+
+

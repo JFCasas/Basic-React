@@ -2,9 +2,18 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Home from './pages/Home'
+import Login from './pages/Login'
 
 import logo from './logo.svg';
 import './App.css';
+
+import {
+
+  BrowserRouter as Router,
+  Link,
+  Route
+
+} from 'react-router-dom';
 
 
 class App extends Component {
@@ -42,7 +51,26 @@ class App extends Component {
 
       <MuiThemeProvider>
 
-        <Home ></Home>
+        <Router>
+
+          <div>
+
+            <Link to="/login">Login</Link>
+
+            <Link to="/">Home</Link>
+
+            <Route exact path="/" component={Home}></Route>
+            <Route path="/login" component={Login}></Route>
+
+          </div>
+
+          
+
+          
+        
+        </Router>
+
+        
   
       </MuiThemeProvider>
     );
