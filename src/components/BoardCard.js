@@ -6,7 +6,7 @@ import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 
 
-export default class PlaceCard extends React.Component {
+export default class BoardCard extends React.Component {
 
 	constructor(props){
 
@@ -25,17 +25,22 @@ export default class PlaceCard extends React.Component {
 
 		return (
 
-			 <Card style={{"fontFamily":"'Roboto', sans-serif"}} key={this.props.index}>
+      <CSSTransition timeout = {300}  classNames = 'fade-scale' in = {this.props.in}  >
+
+			 <Card style={{"fontFamily":"'Roboto', sans-serif"}} key={this.props.index} >
 
         <CardText >{this.props.card.content}</CardText>
               
         <CardActions style={{"textAlign": "right"}}>
             
-           <FlatButton label="Ocultar" secondary={true}  /> 
+            
+           <FlatButton label="Ocultar" secondary={true} onClick={()=> this.props.onRemove(this.props.card)}   /> 
         
         </CardActions>
       
        </Card>
+
+      </CSSTransition>
 	         
      	)
 	}

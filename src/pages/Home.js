@@ -126,19 +126,18 @@ export default class Home extends React.Component {
 	            
 	            </div>
 
-	            <TransitionGroup className = "places">
+	            <h2 style={{"textAlign":"center", "marginBottom":"2em" , fontFamily: "'Pacifico', cursive"}}>Negocios populares</h2>
+
+	            <div className = "places">
+
+
 
 	              {this.places()}
 	              
 
-	            </TransitionGroup>
-
-	            <div>
-
-	            	<Board></Board>
-	            	
-
 	            </div>
+
+	            
 
 	            
 

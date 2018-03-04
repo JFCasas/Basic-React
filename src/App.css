@@ -66,7 +66,7 @@
 .Board{
 
 	margin-top: 2em;
-	text-align:center;
+
 }
 
 .botones{
@@ -74,6 +74,13 @@
 	display: flex;
 	justify-content: space-around;
 
+}
+
+.board{
+
+	display: flex;
+	
+	flex-wrap: wrap;
 }
 
 

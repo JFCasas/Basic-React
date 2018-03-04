@@ -913,3 +913,19 @@ Finalmente:
   
 
 </TransitionGroup> 
+
+
+NO FUNCIONA
+
+
+Inserto un nuevo componente "Board"
+
+
+Esta vez los elementos los inserto mediante un botón y funciona correctamente al insertarlos. Los inserta y los anima.
+
+Falla de nuevo al eliminarlos.
+
+
+
+Dejo el código para que funcione de manera correcta en la eliminación de los negocios
+

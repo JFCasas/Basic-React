@@ -25,9 +25,9 @@ export default class PlaceCard extends React.Component {
 
 		return (
 
-			<CSSTransition timeout = {300}  classNames = 'fade-scale' in = {this.props.in}  >
+			<CSSTransition timeout = {300}  classNames = 'fade-scale' in = {this.props.in} >
 
-		 		<Card style={{"fontFamily":"'Roboto', sans-serif"}} key={this.props.index}>
+		 		<Card style={{"fontFamily":"'Roboto', sans-serif"}} key={this.props.index} >
 		          
 		          <CardMedia >
 

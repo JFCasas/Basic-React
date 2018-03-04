@@ -1,6 +1,7 @@
 import React from 'react'
 
 import CSSTransition from 'react-transition-group/CSSTransition'
+import TransitionGroup from 'react-transition-group/TransitionGroup'
 
 import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
@@ -9,7 +10,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import BoardCard from '../components/BoardCard'
 
 
-export default class PlaceCard extends React.Component {
+export default class Board extends React.Component {
 
 	constructor(props){
 
@@ -21,11 +22,16 @@ export default class PlaceCard extends React.Component {
       	}
 
       	this.addCard = this.addCard.bind(this)
+
+      	this.hideCard = this.hideCard.bind(this)
+
+      	
 	}
 
     addCard(){
 
-    	const id = this.state.cards.lenght + 1;
+    	const id = this.state.cards.length + 1;
+
     	const content = `Card ${id}` 
 
     	const newCard = {
@@ -35,9 +41,29 @@ export default class PlaceCard extends React.Component {
     	}
 
     	this.setState({
+      		
       		cards: this.state.cards.concat(newCard)
+    	
     	})
+	
 	}
+
+	hideCard(card){
+
+		
+
+		this.setState({
+
+			//cards : this.state.cards.filter( el => el != card )
+
+			cards : this.state.cards.filter(function(el){
+
+				return el != card;
+			})
+		})
+	}
+
+	
 
 	cards(){
 
@@ -45,7 +71,8 @@ export default class PlaceCard extends React.Component {
 
 	      return(
 
-	        <BoardCard card={card} index={index} ></BoardCard>
+	        <BoardCard card={card} index={index} onRemove={this.hideCard} ></BoardCard>
+	        
 	      )
 
 	    })
@@ -60,15 +87,15 @@ export default class PlaceCard extends React.Component {
 				<div className = "botones">
 
 					<RaisedButton label="Add" primary={true} onClick={this.addCard}  />
-					<RaisedButton label="Remove" primary={true} onClick={this.updateNumero}  />
+					
 				
 				</div>
 
-				<ul className="board">
+				<TransitionGroup className="board">
       			
       				{this.cards()}
     		 
-    		 	</ul>
+    		 	</TransitionGroup>
 				
 
 			</div>
