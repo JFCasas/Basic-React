@@ -4,7 +4,7 @@ import TransitionGroup from 'react-transition-group/TransitionGroup'
 
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
 import {indigo400,red500, yellow500, blue500, grey50} from 'material-ui/styles/colors'
 

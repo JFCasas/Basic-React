@@ -1020,3 +1020,69 @@ render() {
 
 
 
+RUTAS Y COMPONENTES
+
+Vamos a adopatar la siguiente solución.
+
+Creamos el archivo Router.js
+
+
+
+import React from 'react';
+
+import {
+
+  BrowserRouter as ReactRouter,
+  Route
+
+} from 'react-router-dom';
+
+import App from './App' 
+
+import Home from './pages/Home'
+import Login from './pages/Login'
+
+export default class Router extends React.Component {
+
+  render(){
+
+    return (
+
+      <ReactRouter>
+
+        <App>
+
+          <Route exact path="/" component={Home}></Route>
+          <Route path="/login" component={Login}></Route>
+
+          </App>
+        
+      </ReactRouter>
+
+    )
+  }
+
+}
+
+
+Nuestra entrada a la aplicación es App.js. Lo podemos comprobar en el archivo index.js
+
+Tenemos que hacer que sea Router.js
+
+Lo hacemos de la siguiente manera:
+
+
+index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Router from './Router';
+import registerServiceWorker from './registerServiceWorker';
+
+ReactDOM.render(<Router />, document.getElementById('root'));
+registerServiceWorker();
+
+
+
+
