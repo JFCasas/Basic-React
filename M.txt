@@ -1086,3 +1086,63 @@ registerServiceWorker();
 
 
 
+BARRA DE NAVEGACIÓN
+
+Creamos el componente  MyAppBar.js
+
+
+import React from 'react';
+
+import AppBar from 'material-ui/AppBar';
+
+export default class MyAppBar extends React.Component {
+
+  render(){
+
+    return (
+
+      <AppBar
+          
+          title="Places"
+
+          style ={{"backgroundColor" : "#000" }}
+
+          showMenuIconButton = {false}
+
+          titleStyle ={{"color" : "#F5F5F5"}}
+          
+      />
+
+    )
+  }
+
+}
+
+
+App.js
+
+...............................
+
+import MyAppBar from './components/MyAppBar'
+
+...............................
+
+
+Ponemos nuestro nuevo componente justo encima de los componentes que decide el Router de la siguiente manera:
+
+render() {
+    
+    return (
+
+      <MuiThemeProvider>
+
+        <MyAppBar></MyAppBar>
+        {this.props.children}
+        
+  
+      </MuiThemeProvider>
+    );
+  } 
+
+
+  

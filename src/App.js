@@ -3,6 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import './App.css';
 
+import MyAppBar from './components/MyAppBar'
+
 class App extends Component {
 
   constructor(props){
@@ -38,7 +40,7 @@ class App extends Component {
 
       <MuiThemeProvider>
 
-        
+        <MyAppBar></MyAppBar>
         {this.props.children}
         
   
