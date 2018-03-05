@@ -1189,3 +1189,69 @@ Por otra parte es interesante como especificamos una imagen de fondo:
 
 
 
+
+
+
+COMPONENTES FUNCIONALES
+
+Creamos un archivo Container.js
+
+
+import React from 'react';
+
+
+const Container = (props) => {
+
+  return(
+
+
+    <div className = "componenteFuncional">
+      
+      {props.children}
+
+    </div>
+
+  );
+
+}
+
+export default Container;
+
+
+
+Vamos a ver la utilización en una página de prueba. Para ello vamos a crear un nuevo componente prueba que podemos utilizar en el futuro para esta clase de pruebas.
+
+
+
+Prueba.js
+
+import React from 'react';
+
+import Container from '../components/Container' 
+
+import Title from '../components/Title' 
+
+
+export default class Prueba extends React.Component {
+
+  render(){
+
+    return (
+      
+
+      <Container>
+        
+        <p >Hola Mundo</p>
+        <Title></Title>
+
+
+      </Container>
+    )
+  }
+
+}
+
+Este componente funcional va a poder ser reutilizado en todo nuestro código.
+
+
+Lo dejamos de momento como prueba conceptual.
