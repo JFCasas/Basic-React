@@ -5,7 +5,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import {orange500,grey900 } from 'material-ui/styles/colors';
 
-import {Link} from 'react-router-dom';
+import {
+
+  BrowserRouter as ReactRouter,
+  Link,
+  Route
+
+} from 'react-router-dom';
 
 const styles = {
   errorStyle: {
@@ -60,13 +66,50 @@ export default class Login extends React.Component {
 
 				</div>
 
-				<div >
+			   <div>
 
-					<RaisedButton label="Login" secondary={true} 
-						style = {{"width" : "10vw", "marginTop" : "5em"}}
-					/>
+          <Route path="/login" exact render={()=>{
 
-          <Link to="/signup" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>No tengo cuenta</Link>
+            return(
+
+              <div >
+
+                <RaisedButton label="Login" secondary={true} 
+                  style = {{"width" : "10vw", "marginTop" : "5em"}}
+                />
+
+                <Link to="/signup" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>No tengo cuenta</Link>
+            
+              </div>
+            )
+
+
+          }}>
+          
+          </Route>
+
+          <Route path="/signup" exact render={()=>{
+
+            return(
+
+              <div >
+
+                <RaisedButton label="Registrarse" secondary={true} 
+                  style = {{"width" : "10vw", "marginTop" : "5em"}}
+                />
+
+                <Link to="/login" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>Ya tengo cuenta</Link>
+                
+
+              </div>
+            )
+
+
+          }}>
+          
+          </Route>
+
+          <Link to="/" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>Inicio</Link>
         
         </div>
 

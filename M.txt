@@ -1259,6 +1259,8 @@ Lo dejamos de momento como prueba conceptual.
 
 
 
+
+
 PAGINA CREAR CUENTA
 
 La página casi va a ser idéntica a nuestra página para realizar el login
@@ -1270,4 +1272,117 @@ Hacemos uso en el componente Login y Signup de "Link"
 
 
 
+
+RUTAS EN COMPONENTES
+
+Vamos a reducir los dos componentes Login y Signup a uno solo mediante la utilización del Router
+
+En el componente Login ya no solo llevamos a cabo la importación de Link
+
+Llevamos a cabo la siguiente importación:
+
+import {
+
+  BrowserRouter as ReactRouter,
+  Link,
+  Route
+
+} from 'react-router-dom';
+
+El Router lo podemos utilizar en cualquier componente que nosotros queramos.
+
+
+En nuestro componente Login
+
+<ReactRouter>
+
+  <div>
+
+    <Route path="/login" exact render={()=>{
+
+      return(
+
+        <div >
+
+          <RaisedButton label="Login" secondary={true} 
+            style = {{"width" : "10vw", "marginTop" : "5em"}}
+          />
+
+          <Link to="/signup" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>No tengo cuenta</Link>
+      
+        </div>
+      )
+
+
+    }}>
+    
+    </Route>
+
+    <Route path="/signup" exact render={()=>{
+
+      return(
+
+        <div >
+
+          <RaisedButton label="Registrarse" secondary={true} 
+            style = {{"width" : "10vw", "marginTop" : "5em"}}
+          />
+
+          <Link to="/login" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>Ya tengo cuenta</Link>
+          
+
+        </div>
+      )
+
+
+    }}>
+    
+    </Route>
+  
+  </div>
+
+</ReactRouter>
+
+
+En Router.js
+
+................................
+
+export default class Router extends React.Component {
+
+  render(){
+
+    return (
+
+      <ReactRouter>
+
+        <App>
+
+          <Route exact path="/" component={Home}></Route>
+                <Route path="/login" component={Login}></Route>
+                <Route path="/signup" component={Login}></Route>
+                <Route path="/prueba" component={Prueba}></Route>
+
+          </App>
+        
+      </ReactRouter>
+
+    )
+  }
+
+}
+
+
+Todo sigue funcionando de la misma manera con un solo componente "Login"
+
+
+Ponemsos el boton de Incio
+
+Vemos que no se comporta de manera adecuada ya que tenemos dos instancias de ReactRouster
+
+Una la tenemos en este componente y la otra instancia en Rouster.js
+
+Eliminamos la de este fichero y funciona todo de manera correcta.
+
+El ReactRouster solo tiene que aparecer una vez y luego podemos tener rutas donde nosotros queramos
 
