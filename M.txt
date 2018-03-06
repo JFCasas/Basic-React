@@ -1255,3 +1255,19 @@ Este componente funcional va a poder ser reutilizado en todo nuestro código.
 
 
 Lo dejamos de momento como prueba conceptual.
+
+
+
+
+PAGINA CREAR CUENTA
+
+La página casi va a ser idéntica a nuestra página para realizar el login
+
+Creamos el componente Signup. Lo integramos en nuestra aplicación de la manera habitual.
+
+
+Hacemos uso en el componente Login y Signup de "Link"
+
+
+
+

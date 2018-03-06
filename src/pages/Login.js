@@ -5,6 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import {orange500,grey900 } from 'material-ui/styles/colors';
 
+import {Link} from 'react-router-dom';
+
 const styles = {
   errorStyle: {
     color: orange500,
@@ -63,9 +65,12 @@ export default class Login extends React.Component {
 					<RaisedButton label="Login" secondary={true} 
 						style = {{"width" : "10vw", "marginTop" : "5em"}}
 					/>
-					
 
-				</div>
+          <Link to="/signup" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>No tengo cuenta</Link>
+        
+        </div>
+
+        
 
 				
 

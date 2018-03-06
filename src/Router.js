@@ -11,6 +11,7 @@ import App from './App'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
+import Signup from './pages/Signup'
 import Prueba from './pages/Prueba'
 
 export default class Router extends React.Component {
@@ -25,6 +26,7 @@ export default class Router extends React.Component {
 
 					<Route exact path="/" component={Home}></Route>
 		            <Route path="/login" component={Login}></Route>
+		            <Route path="/signup" component={Signup}></Route>
 		            <Route path="/prueba" component={Prueba}></Route>
 
 			    </App>
