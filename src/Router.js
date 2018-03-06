@@ -13,8 +13,29 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Prueba from './pages/Prueba'
+import Dashboard from './pages/Dashboard'
+
+const userLoggedIn = true;
 
 export default class Router extends React.Component {
+
+	authorizedRoutes(){
+
+		if(userLoggedIn){
+
+			return(
+
+				<Route exact path="/prueba" component={Prueba}></Route>
+			)
+		}
+
+	}
+
+	home(){
+
+		if (userLoggedIn) return Dashboard
+		return Home
+	}
 
 	render(){
 
@@ -24,10 +45,10 @@ export default class Router extends React.Component {
 
 				<App>
 
-					<Route exact path="/" component={Home}></Route>
+					<Route exact path="/" component={this.home()}></Route>
 		            <Route path="/login" component={Login}></Route>
 		            <Route path="/signup" component={Login}></Route>
-		            <Route path="/prueba" component={Prueba}></Route>
+		            {this.authorizedRoutes()}
 
 			    </App>
 				

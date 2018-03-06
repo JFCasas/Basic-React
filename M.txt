@@ -1386,3 +1386,113 @@ Eliminamos la de este fichero y funciona todo de manera correcta.
 
 El ReactRouster solo tiene que aparecer una vez y luego podemos tener rutas donde nosotros queramos
 
+
+
+
+
+
+RUTAS DINAMICAS
+
+Hay a veces en que las rutas van a estar disponibles en función de una serie de condiciones
+
+Por ejemplo una condición es que el usuario esté logueado.
+
+Router.js
+
+............................
+
+const userLoggedIn = false;
+
+export default class Router extends React.Component {
+
+  authorizedRoutes(){
+
+    if(userLoggedIn){
+
+      return(
+
+        <Route exact path="/prueba" component={Prueba}></Route>
+      )
+    }
+
+  }
+
+  render(){
+
+    return (
+
+      <ReactRouter>
+
+        <App>
+
+          <Route exact path="/" component={Home}></Route>
+                <Route path="/login" component={Login}></Route>
+                <Route path="/signup" component={Login}></Route>
+                {this.authorizedRoutes()}
+
+          </App>
+        
+      </ReactRouter>
+
+    )
+  }
+
+}
+
+
+
+
+Podemos también condicionar que componente va a responder a una petición dependiendo de una serie de condiciones
+
+Definimos un componente Dashboard que va a ser el "home" para los usuarios que ya estén logueados
+
+Hacemos algo de esta manera en Router.js
+
+........................
+
+const userLoggedIn = false;
+
+export default class Router extends React.Component {
+
+  authorizedRoutes(){
+
+    if(userLoggedIn){
+
+      return(
+
+        <Route exact path="/prueba" component={Prueba}></Route>
+      )
+    }
+
+  }
+
+  home(){
+
+    if (userLoggedIn) return Dashboard
+    return Home
+  }
+
+  render(){
+
+    return (
+
+      <ReactRouter>
+
+        <App>
+
+          <Route exact path="/" component={this.home()}></Route>
+                <Route path="/login" component={Login}></Route>
+                <Route path="/signup" component={Login}></Route>
+                {this.authorizedRoutes()}
+
+          </App>
+        
+      </ReactRouter>
+
+    )
+  }
+
+}
+
+
+
