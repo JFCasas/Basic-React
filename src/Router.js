@@ -14,6 +14,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Prueba from './pages/Prueba'
 import Dashboard from './pages/Dashboard'
+import New from './pages/New'
 
 const userLoggedIn = true;
 
@@ -25,7 +26,15 @@ export default class Router extends React.Component {
 
 			return(
 
-				<Route exact path="/prueba" component={Prueba}></Route>
+				<div>
+
+					<Route exact path="/prueba" component={Prueba}></Route>
+					<Route exact path="/new" component={New}></Route>
+					
+
+				</div>
+
+				
 			)
 		}
 

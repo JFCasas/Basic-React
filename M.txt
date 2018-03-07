@@ -1496,3 +1496,30 @@ export default class Router extends React.Component {
 
 
 
+
+
+DASHBOARD PARA USUARIOS
+
+
+Implementamos el componente Dashboard
+
+
+La única novedad es la utlización de un icono para el botón de crear un nuevo negocio
+
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
+
+<Link to="/new" >
+
+  <FloatingActionButton secondary = {true} className = "boton-new" >
+    <ContentAdd />
+  </FloatingActionButton>
+
+
+</Link>
+
+
+
+
+
