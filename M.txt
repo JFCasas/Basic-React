@@ -1523,3 +1523,11 @@ import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
 
 
+COMPONENTE ESPECIFICO PARA MOSTRAR LOS NEGOCIOS EN DASHBOARD
+
+Realizamos un componente especifico para la vista de Dashboard
+
+PlaceCardDashboard.js 
+
+
+

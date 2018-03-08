@@ -8,7 +8,8 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
 import data from '../requests/places'
-import PlaceCard from '../components/PlaceCard'
+
+import PlaceCardDashboard from '../components/PlaceCardDashboard'
 
 export default class Dashboard extends React.Component {
 
@@ -29,7 +30,7 @@ export default class Dashboard extends React.Component {
 
         return(
 
-          <PlaceCard place={place} index={index} onRemove={this.hidePlace}></PlaceCard>
+          <PlaceCardDashboard place={place} index={index} onRemove={this.hidePlace}></PlaceCardDashboard>
         )
 
       })
@@ -65,7 +66,7 @@ export default class Dashboard extends React.Component {
 
             </div>
 
-            <div className = "dashboard-cards" style={{ "width":"65%", "backgroundColor" : "orange", "height" : "10vh" }} >
+            <div className = "dashboard-cards" style={{ "width":"65%" }} >
 
               {this.places()}
               
