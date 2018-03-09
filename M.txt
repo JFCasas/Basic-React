@@ -1531,3 +1531,167 @@ PlaceCardDashboard.js
 
 
 
+
+
+
+TRANSICIONES EN LAS PAGINAS
+
+
+Switch del Router
+
+Router.js
+
+import React from 'react';
+
+import {
+
+  BrowserRouter as ReactRouter,
+  Route,
+  Switch
+
+} from 'react-router-dom';
+
+.............................
+
+
+render(){
+
+    return (
+
+      <ReactRouter>
+
+        <App>
+
+          <Switch>
+            <Route exact path="/" component={this.home()}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/signup" component={Login}></Route>
+            {this.authorizedRoutes()}
+            
+          </Switch>
+
+          
+
+          </App>
+        
+      </ReactRouter>
+
+    )
+  }
+
+
+Definir Animación CSS
+
+.left-out-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.left-out-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.left-out-exit {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+.left-out-exit-active {
+  opacity: 0;
+  transform: translateX(0);
+}
+
+
+
+Componentes de la animación con el Router
+
+
+App.js
+
+
+import React, { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import CSSTransition from 'react-transition-group/CSSTransition'
+import TransitionGroup from 'react-transition-group/TransitionGroup'
+
+.........
+
+render() {
+    
+    return (
+
+      <MuiThemeProvider>
+
+        <MyAppBar></MyAppBar>
+
+        <TransitionGroup>
+          
+          <CSSTransition classNames="left-out" timeout = {300}>
+            
+            {this.props.children}  
+          
+          </CSSTransition>
+          
+          
+
+        </TransitionGroup>
+        
+        
+  
+      </MuiThemeProvider>
+    );
+  }
+
+
+Nos falta agregar el prop key que es importante para que la transición se produzca
+
+Necesitamos un valor que se actualice cada vez que modifiquemos la página.
+
+
+Vamos a llevar a cabo la importación de un objeto withRouter como parte del react-router-dom
+
+Este objeto inserta en props información que está relacionada con las rutas
+
+
+App.js
+
+import { withRouter } from 'react-router-dom'
+
+.......
+
+export default withRouter(App);
+
+Esta sintáxis es lo mismo que si hicieramos algo de esta manera
+
+App = withRouter(App)
+export default App;
+
+
+
+Agregamos el prop key de la siguiente manera:
+
+<CSSTransition classNames="left-out" timeout = {300} 
+
+key= {this.props.location.pathname.split('/')[1]}>
+            
+            {this.props.children}  
+          
+</CSSTransition>
+
+
+Si queremos ver el prop que ha sido insertado lo podemos hacer haciendo un console.log(props) en el constructor
+
+
+En location tenemos lo que nos interesa:
+
+location:
+  hash:""
+  pathname:"/"
+  search:""
+  state:undefined
+
+
+En principio no funciona con la versión 16 de React. parece que es un bug. Funcionaría con la 15 pero lo dejamos en la 16
+

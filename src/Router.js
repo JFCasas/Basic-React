@@ -3,7 +3,8 @@ import React from 'react';
 import {
 
   BrowserRouter as ReactRouter,
-  Route
+  Route,
+  Switch
 
 } from 'react-router-dom';
 
@@ -16,7 +17,7 @@ import Prueba from './pages/Prueba'
 import Dashboard from './pages/Dashboard'
 import New from './pages/New'
 
-const userLoggedIn = true;
+const userLoggedIn = false;
 
 export default class Router extends React.Component {
 
@@ -54,10 +55,15 @@ export default class Router extends React.Component {
 
 				<App>
 
-					<Route exact path="/" component={this.home()}></Route>
+				  <Switch>
+				  	<Route exact path="/" component={this.home()}></Route>
 		            <Route path="/login" component={Login}></Route>
 		            <Route path="/signup" component={Login}></Route>
 		            {this.authorizedRoutes()}
+
+				  </Switch>
+
+					
 
 			    </App>
 				

@@ -1,6 +1,7 @@
 import React from 'react'
 
 import TransitionGroup from 'react-transition-group/TransitionGroup'
+import {Link} from 'react-router-dom'
 
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -63,8 +64,14 @@ export default class Home extends React.Component {
 	            <div className = "titulo">
 	              
 	              <Title></Title> 
+
+	              <Link to="/signup" >
+	              	
+	              	<RaisedButton label="Crear Cuenta Gratuita" secondary={true}  />
+
+	              </Link>
 	            
-	              <RaisedButton label="Crear Cuenta Gratuita" secondary={true} onClick={this.updateNumero}  />
+	              
 
 	            </div>
 

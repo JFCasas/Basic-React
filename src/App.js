@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import CSSTransition from 'react-transition-group/CSSTransition'
+import TransitionGroup from 'react-transition-group/TransitionGroup'
+import { withRouter } from 'react-router-dom'
+
 import './App.css';
 
 import MyAppBar from './components/MyAppBar'
@@ -10,6 +14,8 @@ class App extends Component {
   constructor(props){
 
     super(props)
+
+    console.log(props.location.pathname)
 
     this.state = {
 
@@ -41,7 +47,21 @@ class App extends Component {
       <MuiThemeProvider>
 
         <MyAppBar></MyAppBar>
-        {this.props.children}
+
+        <TransitionGroup>
+          
+          <CSSTransition classNames="left-out" timeout = {300} 
+
+          key= {this.props.location.pathname.split('/')[1]}>
+            
+            {this.props.children}  
+          
+          </CSSTransition>
+          
+          
+
+        </TransitionGroup>
+        
         
   
       </MuiThemeProvider>
@@ -49,7 +69,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
 
 
 
