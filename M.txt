@@ -1695,3 +1695,29 @@ location:
 
 En principio no funciona con la versión 16 de React. parece que es un bug. Funcionaría con la 15 pero lo dejamos en la 16
 
+
+
+
+
+Vamos a entrar en la parte más interesante del proyecto. Consumir un servicio WEB realizado por nosotros mismos en Node.js
+
+Lo podemos clonar de mi git. Concretamente es el proyecto Node.js-Web-Service
+
+
+Para poder trabajar de momento con el mismo podemos realizar las siguientes modificaciones:
+
+Hacemos que escuche en 3001
+
+Abrimos fichero bin/www
+
+var port = normalizePort(process.env.PORT || '3001');
+
+
+En app.js comentamos la siguiente línea:
+
+app.use(authApp.unless({method:'OPTIONS'}))
+
+
+
+
+
