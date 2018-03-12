@@ -1720,4 +1720,57 @@ app.use(authApp.unless({method:'OPTIONS'}))
 
 
 
+API Fetch. Descargar negocios del servicio WEB
+
+
+Primero vamos a modificar nuestro servicio web para que en nuestro servidor de ficheros estáticos esté incluido el directorio uploads
+
+app.use(express.static(path.join(__dirname, 'uploads')));
+
+
+Modificamos requests/places de la siguiente manera:
+
+function getPlaces(){
+
+  return fetch("http://127.0.0.1:3001/places")
+
+    .then((response)=>{
+
+      return response.json()
+    })
+
+    .catch((error)=>{
+
+      console.log(error)
+    })
+}
+
+export {getPlaces}
+
+
+Modificamos así mismo varios ficheros en aplicación para que se  adequen a las  nuevas modificaciones.
+
+El JSON que se recibe es de la siguiente forma:
+
+{
+  "docs": [
+    {
+      "acceptsCreditCard": true,
+      "_id": "5aa662eea464cd21f0df606b",
+      "title": "Primera Empresa",
+      "description": "Primera Empresa en la base de datos",
+      "coverImage": "uploads\\25244a94437262b5be8f0731ae04c101",
+      "avatarImage": "uploads\\9a7bb8aafa7e40b47e17b1776765dad5",
+      "openHour": 9,
+      "closeHour": 23,
+      "_user": "5a7b2acca6ba480854467e8d",
+      "slug": "primera-empresa",
+      "__v": 0
+    },
+
+    ............................
+
+
+
+
 

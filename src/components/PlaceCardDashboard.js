@@ -17,7 +17,9 @@ export default class PlaceCardDashboard extends React.Component {
       		numero: 0
       	}
 
+      	this.props.place.coverImage = this.props.place.coverImage.split('\\')[1]
 
+      	//console.log(this.props.place.coverImage)
 
     }
 
@@ -42,7 +44,7 @@ export default class PlaceCardDashboard extends React.Component {
 
 			 		  	<CardMedia >
 
-			            	<img className = "imagen"  src={process.env.PUBLIC_URL + this.props.place.imageUrl}  />
+			            	<img className = "imagen"  src={"http://127.0.0.1:3001/" + this.props.place.coverImage }  />
 
 			          
 			          	</CardMedia>
@@ -55,7 +57,7 @@ export default class PlaceCardDashboard extends React.Component {
 			 		  	<CardTitle title={this.props.place.title}></CardTitle>
 
 			          	<CardText >{this.props.place.description}</CardText>
-			          	<CardText >{this.props.place.address}</CardText>
+			          	<CardText >{this.props.place.coverImage}</CardText>
 
 			          	<CardActions style={{"textAlign": "left"}}>
 		                	

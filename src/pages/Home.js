@@ -10,7 +10,7 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import {indigo400,red500, yellow500, blue500, grey50} from 'material-ui/styles/colors'
 
 import Title from '../components/Title'
-import data from '../requests/places'
+import {getPlaces} from '../requests/places'
 import PlaceCard from '../components/PlaceCard'
 
 import Board from '../components/Board'
@@ -23,12 +23,29 @@ export default class Home extends React.Component {
 
 	    this.state = {
 
-	      places:data.places
+	      places:[]
 	    
 	    }
 
+	    this.loadPlaces()
+
 	    this.hidePlace = this.hidePlace.bind(this)
 
+	}
+
+	loadPlaces(){
+
+		getPlaces().then((jsonR)=>{
+
+		  //console.log(jsonR);
+
+		  this.setState({
+
+		    places : jsonR.docs
+		  
+		  })
+
+		})
 	}
 	
 	places(){

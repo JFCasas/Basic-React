@@ -1,3 +1,21 @@
+function getPlaces(){
+
+	return fetch("http://127.0.0.1:3001/places")
+
+		.then((response)=>{
+
+			return response.json()
+		})
+
+		.catch((error)=>{
+
+			console.log(error)
+		})
+}
+
+export {getPlaces}
+
+
 export default {
 
 	places : [

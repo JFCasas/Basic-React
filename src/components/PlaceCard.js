@@ -17,7 +17,7 @@ export default class PlaceCard extends React.Component {
       		numero: 0
       	}
 
-
+      	this.props.place.coverImage = this.props.place.coverImage.split('\\')[1]
 
     }
 
@@ -29,11 +29,17 @@ export default class PlaceCard extends React.Component {
 
 		 		<Card style={{"fontFamily":"'Roboto', sans-serif"}} key={this.props.index} >
 		          
-		          <CardMedia >
+		          <div style={{"width":"20em"}} >
 
-		            <img className = "imagen"  src={process.env.PUBLIC_URL + this.props.place.imageUrl}  />
-		          
-		          </CardMedia>
+			 		  	<CardMedia >
+
+			            	<img className = "imagen"  src={"http://127.0.0.1:3001/" + this.props.place.coverImage }  />
+
+			          
+			          	</CardMedia>
+			 		  	
+
+			 	  </div>
 
 		          <CardTitle title={this.props.place.title}></CardTitle>
 

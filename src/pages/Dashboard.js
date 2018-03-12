@@ -7,7 +7,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
-import data from '../requests/places'
+import {getPlaces} from '../requests/places'
 
 import PlaceCardDashboard from '../components/PlaceCardDashboard'
 
@@ -19,9 +19,26 @@ export default class Dashboard extends React.Component {
 
       this.state = {
 
-        places:data.places
+        places: []
       
       }
+      this.loadPlaces()
+
+  }
+
+  loadPlaces(){
+
+    getPlaces().then((jsonR)=>{
+
+      //console.log(jsonR);
+
+      this.setState({
+
+        places : jsonR.docs
+      
+      })
+    
+    })
   }
 
   places(){
