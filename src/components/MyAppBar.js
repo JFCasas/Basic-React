@@ -16,6 +16,8 @@ export default class MyAppBar extends React.Component {
 			    showMenuIconButton = {false}
 
 			    titleStyle ={{"color" : "#F5F5F5"}}
+
+			    onTitleClick={this.props.goHome}
 			    
 			/>
 

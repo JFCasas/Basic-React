@@ -1867,5 +1867,52 @@ De momento no lo aplicamos y dejamos el código como está
 
 
 
+LINK HACIA HOME EN APPBAR
+
+Creamos la siguiente función en App.js
+
+goHome(){
+
+    this.props.history.push('/')
+}
+
+De esta manera tenemos acceso a los props que inserta withRouter
+
+Realizamos el bind para que no pierda el contexto y se la pasamos como un prop a nuestro componente de la barra.
+
+
+Este componente tiene un prop
+
+
+import React from 'react';
+
+import AppBar from 'material-ui/AppBar';
+
+export default class MyAppBar extends React.Component {
+
+  render(){
+
+    return (
+
+      <AppBar
+          title="Places"
+
+          style ={{"backgroundColor" : "#000" }}
+
+          showMenuIconButton = {false}
+
+          titleStyle ={{"color" : "#F5F5F5"}}
+
+          onTitleClick={this.props.goHome}
+          
+      />
+
+    )
+  }
+
+}
+
+
+Uno de los aspectos que hay que comprender muy bien es el paso de funciones entre componentes como props.
 
 

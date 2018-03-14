@@ -26,6 +26,8 @@ class App extends Component {
 
     //console.log(data)
 
+    this.goHome = this.goHome.bind(this)
+
   }
 
   updateNumero(){
@@ -38,6 +40,11 @@ class App extends Component {
       })
   }
 
+  goHome(){
+
+      this.props.history.push('/')
+  }
+
   
 
   render() {
@@ -46,7 +53,7 @@ class App extends Component {
 
       <MuiThemeProvider>
 
-        <MyAppBar></MyAppBar>
+        <MyAppBar goHome = {this.goHome} ></MyAppBar>
 
         <TransitionGroup>
           
