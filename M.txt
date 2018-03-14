@@ -1845,3 +1845,27 @@ Finalmente en Place.js implementamos lo necesario para acceder a los parámetros
 
 
 
+DESTRUCTURING ASSIGNMENT ES6
+
+Nos permite hacer algo de la siguiente manera:
+
+render(){
+
+  const {place} = this.state
+  
+  return(
+
+    .......................
+
+    place.avatarImage
+
+  )
+}
+
+
+De momento no lo aplicamos y dejamos el código como está
+
+
+
+
+
