@@ -1720,7 +1720,7 @@ app.use(authApp.unless({method:'OPTIONS'}))
 
 
 
-API Fetch. Descargar negocios del servicio WEB
+API Fetch. DESCARGAR NEGOCIOS DEL SERVIDOR WEB
 
 
 Primero vamos a modificar nuestro servicio web para que en nuestro servidor de ficheros estáticos esté incluido el directorio uploads
@@ -1771,6 +1771,77 @@ El JSON que se recibe es de la siguiente forma:
     ............................
 
 
+
+
+
+INFORMACIÓN INDIVIDUAL DE UN NEGOCIO
+
+
+Añadimos la siguiente ruta:
+
+<Route path="/lugares/:slug" component={Place}></Route>
+
+
+Creamos ese componente nuevo:
+
+Place.js
+
+
+Configuramos los botones de "Ver mas......." de la siguiente manera
+
+<CardActions style={{"textAlign": "left"}}>
+
+  <Link to={"/lugares/" + this.props.place.slug}>
+
+    <FlatButton label="Ver mas....." secondary={true}/>
+
+  </Link>
+  
+  
+  
+</CardActions>
+
+Conseguimos urls de la siguiente manera:
+
+http://127.0.0.1:3000/lugares/primera-empresa
+
+
+Es obhvio que necesitamos el slug para poder realizar la consulta. Tenemos que ser capaces de alguna manera de acceder a la URL
+
+
+Esto ya lo realizamos anteriormente con withRouter
+
+Si realizamos un console.log(props) seremos capaces de saber que el parametro que estamos buscando es 
+
+props.match.params.slug
+
+
+Una vez que tenemos el slug tenemos que ser capaces de a través de este slug retornar el json en el que estamos interesados.
+
+
+Añadimos la función getPlace de la siguiente manera:
+
+
+
+function getPlace(slug){
+
+  return fetch("http://127.0.0.1:3001/places/" + slug)
+
+    .then((response)=>{
+
+      return response.json()
+    })
+
+    .catch((error)=>{
+
+      console.log(error)
+    })
+}
+
+export {getPlaces, getPlace}
+
+
+Finalmente en Place.js implementamos lo necesario para acceder a los parámetros de mi lugar
 
 
 

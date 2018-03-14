@@ -5,6 +5,8 @@ import CSSTransition from 'react-transition-group/CSSTransition'
 import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
+import {Link} from 'react-router-dom'
+
 
 export default class PlaceCardDashboard extends React.Component {
 
@@ -17,11 +19,8 @@ export default class PlaceCardDashboard extends React.Component {
       		numero: 0
       	}
 
-      	this.props.place.coverImage = this.props.place.coverImage.split('\\')[1]
-
       	//console.log(this.props.place.coverImage)
-
-    }
+	}
 
 	render(){
 
@@ -57,11 +56,17 @@ export default class PlaceCardDashboard extends React.Component {
 			 		  	<CardTitle title={this.props.place.title}></CardTitle>
 
 			          	<CardText >{this.props.place.description}</CardText>
-			          	<CardText >{this.props.place.coverImage}</CardText>
+			          	
 
 			          	<CardActions style={{"textAlign": "left"}}>
+
+			          		<Link to={"/lugares/" + this.props.place.slug}>
+
+			          			<FlatButton label="Ver mas....." secondary={true}/>
+
+			          		</Link>
 		                	
-		                	<FlatButton label="Ver mas....." secondary={true}/>
+		                	
 		                	
 		              	</CardActions>
 			 		  	

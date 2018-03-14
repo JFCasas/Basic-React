@@ -61,11 +61,17 @@
 	display: flex;
 	justify-content: space-around;
 	font-weight: bold;
+	flex-wrap:wrap;
 }
 
 .imagen{
 
 	height: 15em;
+}
+
+.imagen2{
+
+	height: 50vh;
 }
 
 

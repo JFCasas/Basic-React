@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {Link} from 'react-router-dom'
+
 import CSSTransition from 'react-transition-group/CSSTransition'
 
 import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
@@ -17,8 +19,6 @@ export default class PlaceCard extends React.Component {
       		numero: 0
       	}
 
-      	this.props.place.coverImage = this.props.place.coverImage.split('\\')[1]
-
     }
 
 	render(){
@@ -27,7 +27,8 @@ export default class PlaceCard extends React.Component {
 
 			<CSSTransition timeout = {300}  classNames = 'fade-scale' in = {this.props.in} >
 
-		 		<Card style={{"fontFamily":"'Roboto', sans-serif"}} key={this.props.index} >
+		 		<Card style={{"fontFamily":"'Roboto', sans-serif", "marginTop":"1em"}} 
+		 		key={this.props.index} >
 		          
 		          <div style={{"width":"20em"}} >
 
@@ -46,8 +47,15 @@ export default class PlaceCard extends React.Component {
 		          <CardText >{this.props.place.description}</CardText>
 
 		          <CardActions style={{"textAlign": "right"}}>
-	                <FlatButton label="Ver mas....." secondary={true}/>
+	                
+	                <Link to={"/lugares/" + this.props.place.slug}>
+
+			          	<FlatButton label="Ver mas....." secondary={true}/>
+
+			         </Link>
+	                
 	                <FlatButton label="Ocultar" secondary={true} onClick={()=> this.props.onRemove(this.props.place)}   />
+	              
 	              </CardActions>
 		        
 		         </Card>
