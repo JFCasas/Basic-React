@@ -1916,3 +1916,134 @@ export default class MyAppBar extends React.Component {
 Uno de los aspectos que hay que comprender muy bien es el paso de funciones entre componentes como props.
 
 
+
+
+
+
+INICIAR SESION Y CREAR CUENTA
+
+Agregamos un ref a nuestros elementos para acceder de manera rápida a sus valores en el DOM
+
+Creamos 2 funciones una para realizar el login y la otra para crear los usuarios
+
+
+
+import { login, signUp } from '../requests/auth'
+
+
+export default class Login extends React.Component {
+
+  constructor(props){
+
+    super(props)
+
+    this.requestAuth = this.requestAuth.bind(this)
+
+    this.createAccount = this.createAccount.bind(this)
+
+  }
+
+  requestAuth(){
+
+    const credentials = {
+
+      email : this.refs.emailField.getValue(),
+      password : this.refs.passwordField.getValue()
+    
+    }
+
+    login(credentials).then((response)=>{
+
+      console.log(response)
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+  }
+
+  createAccount(){
+
+    const credentials = {
+
+      email : this.refs.emailField.getValue(),
+      password : this.refs.passwordField.getValue()
+    
+    }
+
+
+    signUp(credentials).then((response)=>{
+
+      console.log(response)
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+  }
+
+
+  render(){
+
+  .................................................
+
+  .................................................
+
+
+  Implementamos requests/auth
+
+  function login(credentials){
+
+  return fetch("http://127.0.0.1:3001/sessions",{
+
+    method: 'POST',
+    body: JSON.stringify(credentials),
+    headers:{
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }).then((response)=>{
+
+      return response.json()
+  
+  }).catch((error)=>{
+
+    console.log(error)
+  })
+}
+
+function signUp(credentials){
+
+  return fetch("http://127.0.0.1:3001/users",{
+
+    method: 'POST',
+    body: JSON.stringify(credentials),
+    headers:{
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }).then((response)=>{
+
+      return response.json()
+  
+  }).catch((error)=>{
+
+    console.log(error)
+  })
+}
+
+export {login,signUp}
+
+
+¿ Donde alamacenamos el jwt ?
+
+Vamos a usar un almacenamiento central para todos los componentes.
+
+Una de las arquitecturas más usadas es REDUX
+
+
+
+FUNDAMENTOS REDUX
+

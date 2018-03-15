@@ -13,6 +13,8 @@ import {
 
 } from 'react-router-dom';
 
+import { login, signUp } from '../requests/auth'
+
 const styles = {
   errorStyle: {
     color: orange500,
@@ -30,7 +32,59 @@ const styles = {
 
 export default class Login extends React.Component {
 
-	render(){
+  constructor(props){
+
+    super(props)
+
+    this.requestAuth = this.requestAuth.bind(this)
+
+    this.createAccount = this.createAccount.bind(this)
+
+  }
+
+	requestAuth(){
+
+    const credentials = {
+
+      email : this.refs.emailField.getValue(),
+      password : this.refs.passwordField.getValue()
+    
+    }
+
+    login(credentials).then((response)=>{
+
+      console.log(response)
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+  }
+
+  createAccount(){
+
+    const credentials = {
+
+      email : this.refs.emailField.getValue(),
+      password : this.refs.passwordField.getValue()
+    
+    }
+
+
+    signUp(credentials).then((response)=>{
+
+      console.log(response)
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+  }
+
+
+  render(){
 
 		return (
 
@@ -46,6 +100,7 @@ export default class Login extends React.Component {
       					underlineStyle={styles.underlineStyle}
       					underlineFocusStyle={styles.underlineStyle}
       					floatingLabelStyle={styles.floatingLabelStyle}
+                ref = 'emailField'
     				/>
 					
 
@@ -61,6 +116,7 @@ export default class Login extends React.Component {
       					underlineStyle={styles.underlineStyle}
       					underlineFocusStyle={styles.underlineStyle}
       					floatingLabelStyle={styles.floatingLabelStyle}
+                ref = "passwordField"
     				/>
 					
 
@@ -76,6 +132,7 @@ export default class Login extends React.Component {
 
                 <RaisedButton label="Login" secondary={true} 
                   style = {{"width" : "10vw", "marginTop" : "5em"}}
+                  onClick={this.requestAuth}
                 />
 
                 <Link to="/signup" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>No tengo cuenta</Link>
@@ -96,6 +153,7 @@ export default class Login extends React.Component {
 
                 <RaisedButton label="Registrarse" secondary={true} 
                   style = {{"width" : "10vw", "marginTop" : "5em"}}
+                  onClick={this.createAccount}
                 />
 
                 <Link to="/login" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>Ya tengo cuenta</Link>
@@ -109,7 +167,7 @@ export default class Login extends React.Component {
           
           </Route>
 
-          <Link to="/" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>Inicio</Link>
+          
         
         </div>
 
