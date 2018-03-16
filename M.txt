@@ -2045,5 +2045,30 @@ Una de las arquitecturas más usadas es REDUX
 
 
 
+
+
 FUNDAMENTOS REDUX
+
+
+Librería que nos permite controlar el estado de nuestra aplicación.
+
+
+Source of Truth(Fuente de la Verdad)
+
+Uno de los principales componentes de la arquitectura. Es donde toda la información se concentra.
+
+
+
+
+Inmutabilidad
+
+Estado de un objeto lo podríamos definir como el valor actual de todas sus propiedades.
+
+Concepto de inmutabilidad tiene que ver con que si quieres cambiar algo de el objeto, lo tienes que reemplazar por otro objeto. No puedes modificar sus partes....tienes que sustituir el objeto por completo.
+
+
+
+
+
+
 
