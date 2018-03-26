@@ -2037,7 +2037,7 @@ function signUp(credentials){
 export {login,signUp}
 
 
-¿ Donde alamacenamos el jwt ?
+¿ Donde almacenamos el jwt ?
 
 Vamos a usar un almacenamiento central para todos los componentes.
 
@@ -2068,7 +2068,36 @@ Concepto de inmutabilidad tiene que ver con que si quieres cambiar algo de el ob
 
 
 
+INSTALAR Y CONFIGURAR REDUX Y REACT REDUX
 
 
+Instalamos las librerías necesarias
+
+npm install redux --save
+
+npm install react-redux --save
+
+
+Vamos a crear el store que es donde se alamacena el estado de nuestra aplicación
+
+Creamos una carpeta llamada store
+
+Creamos el archivo configureStore.js que se va a encargar de configurar el almacenamiento
+
+
+createStore recibe dos argumentos. El primero de ellos es el reducer a traves del cual se van a manipular el estado del contenedor
+
+El reducer es una función pura que recibe el estado, la acción que tiene que realizar y retorna un nuevo estado.
+
+Por ahora solo pasamos una función con el estado original, una acción y retornamos el estado
+
+
+Se puede establecer un segundo argumento. 
+
+
+Una vez que tenemos esto se puede exportar el almacenamiento.
+
+
+En el siguiente apartado vamos a crear nuestro verdadero reducer. Vamos a hacerlo de una manera en que podamos dividir el manejo de nuestro almacenamiento en diferentes reducers y no todo tenga que pasar por una sola funcion.
 
 
