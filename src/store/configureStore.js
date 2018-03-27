@@ -1,7 +1,13 @@
-import {createStore} from 'redux'
+import {createStore, combineReducers} from 'redux'
 
-export default const store = createStore(function(state,action){
+import reducers from '../reducers'
 
-	return state
+const rootReducer = combineReducers({
 
-},{})
+	...reducers
+})
+
+export default function configureStore(){
+
+	return createStore(rootReducer)
+}

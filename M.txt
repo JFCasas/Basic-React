@@ -2101,3 +2101,82 @@ Una vez que tenemos esto se puede exportar el almacenamiento.
 En el siguiente apartado vamos a crear nuestro verdadero reducer. Vamos a hacerlo de una manera en que podamos dividir el manejo de nuestro almacenamiento en diferentes reducers y no todo tenga que pasar por una sola funcion.
 
 
+
+
+
+
+CONFIGURAR REDUCERS
+
+Podremos variar el estado de nuestra aplicación a través de Reducers
+
+Creamos la carpeta reducers
+
+Creamos dentro de la carpeta 2 archivos index.js y placesReducer.js
+
+placesReducer.js
+
+Función o reducer que se va a encargar de manipular las acciones  que tengan que ver con los negocios de nuestra aplicación:
+
+
+export default function placesReducer(state = [] , action ){
+
+  return state
+
+}
+
+
+index.js
+
+Integramos diferentes reducers en un sólo reducer para pasarselo a createStore para que se genere nuestro almacenamiento
+
+
+
+import places from './placesReducer'
+
+export default {places: places}
+
+
+
+
+configureStore.js
+
+
+import {createStore, combineReducers} from 'redux'
+
+import reducers from '../reducers'
+
+const rootReducer = combineReducers({
+
+  ...reducers
+})
+
+export default function configureStore(){
+
+  return createStore(rootReducer)
+
+}
+
+
+En la constante rootReducer tenemos combinados todos nuestros reducers.
+Esto posteriormente se lo pasamos a la funcion createStore
+
+
+
+Vamos a construir finalmente nuestro store de la siguiente manera.
+
+Nos vamos a index.js que es nuestro archivo de entrada para toda la aplicación.
+
+Importamos configureStore que es una función que al ejecutarla genera finalmente nuestro almacenamiento.
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Router from './Router';
+import registerServiceWorker from './registerServiceWorker';
+
+import configureStore from './store/configureStore'
+
+const store = configureStore();
+
+ReactDOM.render(<Router />, document.getElementById('root'));
+registerServiceWorker();
