@@ -6,16 +6,16 @@ import {Link} from 'react-router-dom'
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-
 import {indigo400,red500, yellow500, blue500, grey50} from 'material-ui/styles/colors'
 
 import Title from '../components/Title'
 import {getPlaces} from '../requests/places'
 import PlaceCard from '../components/PlaceCard'
-
 import Board from '../components/Board'
 
-export default class Home extends React.Component {
+import { connect } from 'react-redux'
+
+class Home extends React.Component {
 
 	constructor(props){
 
@@ -27,6 +27,10 @@ export default class Home extends React.Component {
 	    
 	    }
 
+	    console.log(this.props.places)
+
+
+
 	    this.loadPlaces()
 
 	    this.hidePlace = this.hidePlace.bind(this)
@@ -37,7 +41,7 @@ export default class Home extends React.Component {
 
 		getPlaces().then((jsonR)=>{
 
-		  //console.log(jsonR);
+		  const places = jsonR.docs
 
 		  this.setState({
 
@@ -174,3 +178,13 @@ export default class Home extends React.Component {
 	}
 
 }
+
+function mapStateToProps(state,ownProps){
+
+	return {
+
+		places: state.places
+	}
+}
+
+export default connect(mapStateToProps)(Home)

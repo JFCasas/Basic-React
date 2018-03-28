@@ -2265,5 +2265,126 @@ export default function placesReducer(state = [] , action ){
 
 
 
+RESUMEN:
+
+
+Reducer es una funcion pura que recibe el estado y la accion que tiene que realizar y retorna un nuevo estado
+
+El estado solo se puede modificar a través de los reducers
+
+
+En index.js dentro de la carpeta reducers vamos a integrar diferentes reducers en uno solo para posteriormente pasarselo a createStore y que se genere nuestro almacenamiento.
+
+
+
+
+
+
+CONVERTIR HOME EN CONTAINER COMPONENT
+
+
+Vamos a trabajar en nuestro componente Home
+
+No es recomendable que todos los componentes interactuen con el contenedor.
+
+Para convertir este componente en un contenedor que pueda interactuar con el almacenamiento lo primero que tenemos que realizar es la importación de una función connect
+
+import { connect } from 'react-redux'
+
+Después vamos a requerir que la clase que estamos exportando pase por esa función connect de la siguiente manera:
+
+"connect" recibe una función que traduce como esta estructurado nuestro estado a props que después se van a enviar al componente.
+
+
+
+
+function mapStateToProps(state,ownProps){
+
+  return {
+
+    places: state.places
+  }
+}
+
+export default connect(mapStateToProps)(Home)
+
+
+La función recibe dos argumentos. Recibe el state y los props del componente.
+
+Retorna un JSON que especifica que en el prop places coloque lo que hay en la  propiedad places del contenedor.
+
+En esta propiedad places llega todo lo que se modifica en los reducers.
+
+
+A partir de este momento nuestro componente Home se convierte en un Container Component. 
+
+
+Para corroborar que en este prop places se encuentra lo que el contenedor tiene en la propiedad places del state, realizamos lo siguiente.
+
+...................................
+
+...................................
+
+class Home extends React.Component {
+
+  constructor(props){
+
+      super(props)
+
+      this.state = {
+
+        places:[]
+      
+      }
+
+      console.log(this.props.places)
+
+      this.loadPlaces()
+
+      this.hidePlace = this.hidePlace.bind(this)
+
+  }
+
+Si observamos en la consola nos aparece un arreglo vacío que si nos vamos al reducer vemos que el state por defecto para places es un arreglo vacío
+
+export default function placesReducer(state = [] , action ){
+
+  switch (action.type){
+    
+    case 'LOAD_PLACES':
+
+      return action.places
+
+    default: 
+
+      return state
+  }
+
+}
+
+Si variamos su estado por defecto. Por ejemplo:
+
+export default function placesReducer(state = [1] , action ){
+
+  switch (action.type){
+    
+    case 'LOAD_PLACES':
+
+      return action.places
+
+    default: 
+
+      return state
+  }
+
+}
+
+Podemos comprobar que en consola aparece [1]
+
+Observamos que realmente se nos está inyectando como parte de nuestros props
+
+Por lo tanto ya tenemos sincronizado en este componente información de nuestro container
+
+
 
 
