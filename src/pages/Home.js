@@ -27,7 +27,7 @@ class Home extends React.Component {
 	    
 	    }
 
-	    console.log(this.props.places)
+	    //console.log(this.props.places)
 
 
 

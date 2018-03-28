@@ -2388,3 +2388,182 @@ Por lo tanto ya tenemos sincronizado en este componente información de nuestro 
 
 
 
+GUARDAR TOKEN EN EL STATE
+
+Hacemos todo el flujo para guardar token en state y tener datos sincronizados
+
+Creamos un nuevo reducer. userReducer.js
+
+export default function userReducer(state = {} , action ){
+
+  switch (action.type){
+    
+    case 'LOG_IN':
+
+      return {jwt: action.jwt}
+
+    default: 
+
+      return state
+  }
+
+}
+
+
+Creamos userActions.js
+
+export function login(jwt){
+
+  return { type: 'LOG_IN', jwt}
+}
+
+
+Convertimos Login en un Container Component
+
+
+............
+
+import { connect } from 'react-redux'
+
+-------------
+
+class Login extends React.Component {
+
+--------------
+
+}
+
+
+function mapStateToProps(state,ownProps){
+
+  return {
+
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Login)
+
+
+index.js en carpeta reducers
+
+
+import places from './placesReducer'
+
+import user from './userReducer'
+
+export default {places: places, user:user}
+
+
+Corroboramos que lo estamos haciendo de manera correcta:
+
+
+Al igual que hemos hecho antes en Home en el constructor 
+
+console.log(this.props.user)
+
+y en el reducer 
+
+export default function userReducer(state = {name : 'Prueba'} , action ){
+
+  switch (action.type){
+    
+    case 'LOG_IN':
+
+      return {jwt: action.jwt}
+
+    default: 
+
+      return state
+  }
+
+}
+
+Nos vamos a la página de Login y vemos que hemos realizado todos los pasos de manera correcta.
+
+
+
+Hasta ahora al hacer login teníamos lo siguiente:
+
+requestAuth(){
+
+    const credentials = {
+
+      email : this.refs.emailField.getValue(),
+      password : this.refs.passwordField.getValue()
+    
+    }
+
+    login(credentials).then((response)=>{
+
+      console.log(response)
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+  }
+
+En la respuesta que se manda nos interesa el jwt
+
+
+Como enviamos estos cambios hacia el contenedor central
+
+La única forma es realizando un dispatch de una acción
+
+
+Primero tenemos que importar los actions del user
+
+
+Lo hacemos de la siguiente manera:
+
+import * as actions from '../actions/userActions'
+
+
+Esto quiere decir que importamos todo lo que estamos exportando y lo pone en un objeto con el nombre actions
+
+
+
+Finalmente:
+
+requestAuth(){
+
+    const credentials = {
+
+      email : this.refs.emailField.getValue(),
+      password : this.refs.passwordField.getValue()
+    
+    }
+
+    login(credentials).then((response)=>{
+
+      //console.log(response)
+
+      this.props.dispatch(actions.login(response.jwt))
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+  }
+
+
+Para comprobar que se realiza de manera correcta:
+
+Encima de los campos de los formualarios lo imprimimos
+
+<h1>{this.props.user.jwt}</h1>
+
+
+Funciona correctamente. 
+
+
+Inconveniente es que cuando se recarga la página esa información desaparece.
+
+En la mayoría de los casos es correcto que funcione de esta manera.
+
+Pero en este caso es necesario que perdure......para ello vamos a utilizar el LocalStorage
+
+

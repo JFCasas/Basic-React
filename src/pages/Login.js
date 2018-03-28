@@ -15,6 +15,10 @@ import {
 
 import { login, signUp } from '../requests/auth'
 
+import { connect } from 'react-redux'
+
+import * as actions from '../actions/userActions'
+
 const styles = {
   errorStyle: {
     color: orange500,
@@ -30,7 +34,7 @@ const styles = {
 
 
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 
   constructor(props){
 
@@ -39,6 +43,8 @@ export default class Login extends React.Component {
     this.requestAuth = this.requestAuth.bind(this)
 
     this.createAccount = this.createAccount.bind(this)
+
+    //console.log(this.props.user)
 
   }
 
@@ -53,7 +59,9 @@ export default class Login extends React.Component {
 
     login(credentials).then((response)=>{
 
-      console.log(response)
+      //console.log(response)
+
+      this.props.dispatch(actions.login(response.jwt))
     
     }).catch((error)=>{
 
@@ -75,6 +83,8 @@ export default class Login extends React.Component {
     signUp(credentials).then((response)=>{
 
       console.log(response)
+
+      this.props.dispatch(actions.login(response.jwt))
     
     }).catch((error)=>{
 
@@ -90,7 +100,9 @@ export default class Login extends React.Component {
 
 			<div className = "formulario" style ={{'backgroundImage' : "url("+process.env.PUBLIC_URL + '/images/fondologin.jpeg'+")"}} >
 
-				<div >
+				<h1>{this.props.user.jwt}</h1>
+
+        <div >
 
 					<TextField 
       				
@@ -183,3 +195,13 @@ export default class Login extends React.Component {
 	}
 
 }
+
+function mapStateToProps(state,ownProps){
+
+  return {
+
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Login)

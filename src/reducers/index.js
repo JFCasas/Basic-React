@@ -1,3 +1,5 @@
 import places from './placesReducer'
 
-export default {places: places}
+import user from './userReducer'
+
+export default {places: places, user:user}
