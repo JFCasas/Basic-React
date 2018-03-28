@@ -2218,3 +2218,52 @@ ReactDOM.render(
   <Provider store={store}><Router /></Provider>
   , document.getElementById('root'));
 registerServiceWorker();
+
+
+
+
+
+CREAR ACCIONES
+
+La única manera en que podemos mutar el estado del contenedor es a través de acciones
+
+Acciones son objetos que tiene una propiedad "type" donde se indica que acción se tiene que ejecutar sobre el contenedor que después pasan a los reducers y estos basados en el tipo de acción saben que modificación tienen que llevar a cabo.
+
+
+Creamos una nueva carpeta en src llamada actions
+
+Creamos un nuevo archivo placesActions.js donde vamos a crear las acciones que van a modificar el state en la parte de los negocios.
+
+
+Creamos la siguiente acción:
+
+export function loadPlaces(places){
+
+  return { type: 'LOAD_PLACES', places:places}
+}
+
+Una vez que tenemos nuestra accion, vamos a configurar nuetro reducer
+
+
+placesReducer.js
+
+export default function placesReducer(state = [] , action ){
+
+  switch (action.type){
+    
+    case 'LOAD_PLACES':
+
+      return action.places
+
+    default: 
+
+      return state
+  }
+
+}
+
+
+
+
+
+
