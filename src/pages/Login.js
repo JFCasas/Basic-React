@@ -7,7 +7,6 @@ import {orange500,grey900 } from 'material-ui/styles/colors';
 
 import {
 
-  BrowserRouter as ReactRouter,
   Link,
   Route
 
@@ -44,7 +43,7 @@ class Login extends React.Component {
 
     this.createAccount = this.createAccount.bind(this)
 
-    //console.log(this.props.user)
+    
 
   }
 
@@ -100,7 +99,7 @@ class Login extends React.Component {
 
 			<div className = "formulario" style ={{'backgroundImage' : "url("+process.env.PUBLIC_URL + '/images/fondologin.jpeg'+")"}} >
 
-				<h1>{this.props.user.jwt}</h1>
+				<div style = {{"width": "30vw"}}>{this.props.user.jwt}</div>
 
         <div >
 
@@ -205,3 +204,4 @@ function mapStateToProps(state,ownProps){
 }
 
 export default connect(mapStateToProps)(Login)
+

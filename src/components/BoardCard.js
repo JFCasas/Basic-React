@@ -2,7 +2,7 @@ import React from 'react'
 
 import CSSTransition from 'react-transition-group/CSSTransition'
 
-import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
+import {Card, CardActions, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 

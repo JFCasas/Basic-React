@@ -1,10 +1,10 @@
 import React from 'react'
 
-import CSSTransition from 'react-transition-group/CSSTransition'
+
 import TransitionGroup from 'react-transition-group/TransitionGroup'
 
-import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+
+
 import RaisedButton from 'material-ui/RaisedButton';
 
 import BoardCard from '../components/BoardCard'
@@ -58,7 +58,7 @@ export default class Board extends React.Component {
 
 			cards : this.state.cards.filter(function(el){
 
-				return el != card;
+				return el !== card;
 			})
 		})
 	}

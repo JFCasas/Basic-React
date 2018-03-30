@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 
 import {getPlace} from '../requests/places'
 
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 class Place extends React.Component {
@@ -55,7 +55,7 @@ class Place extends React.Component {
 				    
 				    <CardMedia>
 				      
-				      <img className = "imagen2"  src={"http://127.0.0.1:3001/" + this.state.place.coverImage }  />
+				      <img className = "imagen2"  src={"http://127.0.0.1:3001/" + this.state.place.coverImage } alt ="" />
 				    
 				    </CardMedia>
 
@@ -72,7 +72,7 @@ class Place extends React.Component {
 					    	<CardActions>
 
 					    		<Link to="/" >
-					      			<FlatButton label="Volver" secondary = "true" />
+					      			<FlatButton label="Volver" secondary={true} />
 					      	
 					      		</Link>
 					      	

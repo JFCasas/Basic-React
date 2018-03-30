@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
+//import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
 import {getPlaces} from '../requests/places'
 
@@ -47,7 +47,7 @@ export default class Dashboard extends React.Component {
 
         return(
 
-          <PlaceCardDashboard place={place} index={index} onRemove={this.hidePlace}></PlaceCardDashboard>
+          <PlaceCardDashboard place={place} key={index} onRemove={this.hidePlace}></PlaceCardDashboard>
         )
 
       })

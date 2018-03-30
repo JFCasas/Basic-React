@@ -1,17 +1,17 @@
 import React from 'react'
 
-import TransitionGroup from 'react-transition-group/TransitionGroup'
+
 import {Link} from 'react-router-dom'
 
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import {indigo400,red500, yellow500, blue500, grey50} from 'material-ui/styles/colors'
+import {grey50} from 'material-ui/styles/colors'
 
 import Title from '../components/Title'
 import {getPlaces} from '../requests/places'
 import PlaceCard from '../components/PlaceCard'
-import Board from '../components/Board'
+
 
 import { connect } from 'react-redux'
 
@@ -41,7 +41,7 @@ class Home extends React.Component {
 
 		getPlaces().then((jsonR)=>{
 
-		  const places = jsonR.docs
+		  //const places = jsonR.docs
 
 		  this.setState({
 
@@ -58,7 +58,7 @@ class Home extends React.Component {
 
 	      return(
 
-	        <PlaceCard place={place} index={index} onRemove={this.hidePlace}></PlaceCard>
+	        <PlaceCard place={place} key={index} onRemove={this.hidePlace}></PlaceCard>
 	      )
 
 	    })
@@ -68,7 +68,7 @@ class Home extends React.Component {
 
 		this.setState({
 
-			places : this.state.places.filter(el => el != place)
+			places : this.state.places.filter(el => el !== place)
 
 		})
 	}

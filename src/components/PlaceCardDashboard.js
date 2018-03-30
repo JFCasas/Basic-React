@@ -1,8 +1,6 @@
 import React from 'react'
 
-import CSSTransition from 'react-transition-group/CSSTransition'
-
-import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
+import {Card, CardActions, CardText, CardMedia, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 import {Link} from 'react-router-dom'
@@ -35,7 +33,7 @@ export default class PlaceCardDashboard extends React.Component {
 
 	 		  	<div
 
-	 		  		style={{"fontFamily":"'Roboto', sans-serif", "marginTop":"1em", "display":"flex","justify-content":"space-around"}}
+	 		  		style={{"fontFamily":"'Roboto', sans-serif", "marginTop":"1em", "display":"flex","justifyContent":"space-around"}}
 
 	 		  	>
 	 		  		
@@ -43,7 +41,7 @@ export default class PlaceCardDashboard extends React.Component {
 
 			 		  	<CardMedia >
 
-			            	<img className = "imagen"  src={"http://127.0.0.1:3001/" + this.props.place.coverImage }  />
+			            	<img className = "imagen"  src={"http://127.0.0.1:3001/" + this.props.place.coverImage } alt =""  />
 
 			          
 			          	</CardMedia>

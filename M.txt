@@ -2567,3 +2567,132 @@ En la mayoría de los casos es correcto que funcione de esta manera.
 Pero en este caso es necesario que perdure......para ello vamos a utilizar el LocalStorage
 
 
+
+
+
+
+PERSISTENCIA CON LOCALSTORAGE
+
+Para poder persistir ciertos datos aunque el usuario recarge la página vamos a hecer uso de LocalStorage
+
+Instalamos 
+
+npm install redux-localstorage
+
+Nos vamos a configureStore.js
+
+
+import persistState from 'redux-localstorage'
+
+Básicamente va a ser un potenciador. Va a potenciar las capacidades de nuestro almacenamiento
+
+
+
+Vamos a importar también 'compose'
+
+import {createStore, combineReducers, compose} from 'redux'
+
+
+Es una función que está diseñada cuando queremos aplicar los potenciadores en fila
+
+const enhancer = compose(
+
+  persistState('user')
+
+)
+
+Se genera una función que va a ser nuestro enhancer final..
+
+Cada función que colocamos tiene como parámetro la salida de la función anterior
+
+El resultado de una función se utiliza como argumento de la siguiente función.
+
+
+
+Podríamos hacer algo de la siguiente manera:
+
+const enhancer = compose(
+
+  persistState('user'),
+  otroPotenciador()
+
+)
+
+En nuestro caso solo tenemos una función.
+
+
+El enhancer final lo pasamos como tercer argumento a nuestra función createStore
+
+El segundo argumento es el valor inicial de nuestro contenedor
+
+Nos queda todo de la siguiente manera:
+
+
+
+import {createStore, combineReducers, compose} from 'redux'
+
+import persistState from 'redux-localstorage'
+
+import reducers from '../reducers'
+
+const enhancer = compose(
+
+  persistState('user')
+
+)
+
+const rootReducer = combineReducers({
+
+  ...reducers
+})
+
+export default function configureStore(){
+
+  return createStore(rootReducer,{},enhancer)
+}
+
+Observamos que al recargar la página ya no desaparece. Está persistiendo que es lo que queremos.
+
+Vamos a convertir el Router en un Container Component
+
+Lo hacemos de la manera habitual
+
+
+
+Una vez que hemos hecho esto ya tenemos acceso desde este componente Router a this.props.user.jwt
+
+
+Podemsos utilizar este valor en vez de la constante que usabamos para simular que el usuario estaba logueado.
+
+Si no es null, falso o undefined nos hace perfectamente la funcionalidad
+
+
+Vemos que nos lleva a Dashboard de manera correcta.
+
+Si fijamos el valor a null en el reducer
+
+export default function userReducer(state = {} , action ){
+
+  switch (action.type){
+    
+    case 'LOG_IN':
+
+      return {jwt: null}
+
+    default: 
+
+      return state
+  }
+
+}
+
+Esta vez cuando nos vamos a http://127.0.0.1:3000/ nos muestra el Home
+
+
+Tenemos que observar que cuando realizamos el login, no nos lleva automáticamente al Dashboard
+
+
+Necesitamos integrar redux con nuestro Router.
+
+Antes de realizar esto llevamos a cabo una purga de errores en consola. No todos
+

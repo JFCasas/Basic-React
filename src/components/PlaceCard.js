@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 import CSSTransition from 'react-transition-group/CSSTransition'
 
-import {Card, CardActions, CardHeader, CardText, CardMedia, CardTitle} from 'material-ui/Card';
+import {Card, CardActions, CardText, CardMedia, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 
@@ -34,7 +34,7 @@ export default class PlaceCard extends React.Component {
 
 			 		  	<CardMedia >
 
-			            	<img className = "imagen"  src={"http://127.0.0.1:3001/" + this.props.place.coverImage }  />
+			            	<img className = "imagen"  src={"http://127.0.0.1:3001/" + this.props.place.coverImage } alt =""   />
 
 			          
 			          	</CardMedia>

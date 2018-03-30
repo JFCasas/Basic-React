@@ -8,23 +8,25 @@ import {
 
 } from 'react-router-dom';
 
+import { connect } from 'react-redux'
+
 import App from './App' 
 
 import Home from './pages/Home'
 import Login from './pages/Login'
-import Signup from './pages/Signup'
+
 import Prueba from './pages/Prueba'
 import Dashboard from './pages/Dashboard'
 import New from './pages/New'
 import Place from './pages/Place'
 
-const userLoggedIn = false;
 
-export default class Router extends React.Component {
+
+class Router extends React.Component {
 
 	authorizedRoutes(){
 
-		if(userLoggedIn){
+		if(this.props.user.jwt){
 
 			return(
 
@@ -44,7 +46,7 @@ export default class Router extends React.Component {
 
 	home(){
 
-		if (userLoggedIn) return Dashboard
+		if (this.props.user.jwt) return Dashboard
 		return Home
 	}
 
@@ -75,3 +77,13 @@ export default class Router extends React.Component {
 	}
 
 }
+
+function mapStateToProps(state,ownProps){
+
+  return {
+
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Router)
