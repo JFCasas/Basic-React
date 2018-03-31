@@ -2696,3 +2696,206 @@ Necesitamos integrar redux con nuestro Router.
 
 Antes de realizar esto llevamos a cabo una purga de errores en consola. No todos
 
+
+
+
+INSTALAR Y CONFIGURAR REACT-ROUTER-REDUX
+
+Instalamos de la siguiente manera:
+
+npm install react-router-redux@next --save
+
+Necesitamos la versión 5
+
+"react-router-redux": "^5.0.0-alpha.9"
+
+Ya que estamos trabajando con la versión 4 del router y esta es la versión que necesitamos para poder trabajar con esta versión.
+
+"react-router-dom": "^4.2.2"
+
+
+También instalamos la dependencia history
+
+npm install history --save
+
+Vamos a trabajar en el Router por un lado y en el configureStore por otro 
+
+configureStore.js
+
+import {routerReducer} from 'react-router-redux'
+
+Lo pasamos a la función que está combinando el resto de nuestros reducers de la siguiente manera:
+
+const rootReducer = combineReducers({
+
+  ...reducers,
+  router: routerReducer
+})
+
+Especificamos que en la función configureStore puedo recibir un argumento middleware
+
+Ese middleware lo voy a utlizar como segundo argumento de la función createStore
+
+Mandamos llamar a la función applyMiddleware, ahora veremos de donde sale con el argumento middleware
+
+Nos queda de la siguiente manera:
+
+export default function configureStore(middleware){
+
+  return createStore(
+    rootReducer,
+    applyMiddleware(middleware),
+    enhancer)
+}
+
+Tenemos por lo tanto 3 actores en la configuración del almacenamiento del state
+
+Tenemos los reducers, los middlewares que son acciones que se procesan en medio de la petición de procesar algo en el store y los potenciadores.
+
+
+De donde sale ese middleware. Nos vamos al Router.
+
+Router.js
+
+LLevamos a cabo la siguiente importación
+
+import { ConnectedRouter} from 'react-router-redux'
+
+
+Sustituimos el ReactRouter por este ConnectedRouter
+
+A este ConnectedRouter le pasamos un prop history con el historial
+
+......................
+
+render(){
+
+    return (
+
+      <ConnectedRouter history={this.props.history}>
+
+        <App>
+
+          <Switch>
+            <Route exact path="/" component={this.home()}></Route>
+            <Route path="/lugares/:slug" component={Place}></Route>
+                <Route path="/login" component={Login}></Route>
+                <Route path="/signup" component={Login}></Route>
+                {this.authorizedRoutes()}
+
+          </Switch>
+
+          
+
+          </App>
+        
+      </ConnectedRouter>
+
+    )
+}
+
+
+Por último para terminar nuestra configuración tenemos que ir a index.js
+
+index.js
+
+import createHistory from 'history/createBrowserHistory'
+import { routerMiddleware } from 'react-router-redux'
+
+
+Creamos una nueva constante que es el history
+
+const history = createHistory()
+
+Creamos la constante middleware
+
+const middleware = routerMiddleware(history)
+
+Ese middleware lo pasamos a configureStore de la siguiente manera:
+
+const store = configureStore(middleware);
+
+
+Recordar que ConnectedRouter está esperando un prop llamado history que es el que generamos más arriba
+
+
+Si corremos npm start nos alerta que la función applyMiddleware no está definida
+
+La tenemos que importar de  'redux' en configureStore.js
+
+
+Observamos que despusés de todo esta configuración todo sigue funcionando correctamente
+
+
+Resumen de los ficheros:
+
+configureStore.js
+
+import {createStore, combineReducers, compose, applyMiddleware} from 'redux'
+
+import persistState from 'redux-localstorage'
+
+import reducers from '../reducers'
+
+import {routerReducer} from 'react-router-redux'
+
+const enhancer = compose(
+
+  persistState('user')
+
+)
+
+const rootReducer = combineReducers({
+
+  ...reducers,
+  router: routerReducer
+})
+
+export default function configureStore(middleware){
+
+  return createStore(
+    rootReducer,
+    applyMiddleware(middleware),
+    enhancer)
+}
+
+
+index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Router from './Router';
+import registerServiceWorker from './registerServiceWorker';
+
+import configureStore from './store/configureStore'
+
+import { Provider } from 'react-redux'
+
+import createHistory  from 'history/createBrowserHistory'
+
+import { routerMiddleware } from 'react-router-redux'
+
+const history = createHistory()
+
+const middleware = routerMiddleware(history)
+
+const store = configureStore(middleware);
+
+ReactDOM.render(
+
+  <Provider store={store}><Router history = {history} /></Provider>
+  , document.getElementById('root'));
+registerServiceWorker();
+
+
+Router.js
+
+LLevamos a cabo la siguiente importación
+
+import { ConnectedRouter} from 'react-router-redux'
+
+
+Sustituimos el ReactRouter por este ConnectedRouter
+
+A este ConnectedRouter le pasamos un prop history con el historial

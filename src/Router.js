@@ -10,6 +10,8 @@ import {
 
 import { connect } from 'react-redux'
 
+import { ConnectedRouter} from 'react-router-redux'
+
 import App from './App' 
 
 import Home from './pages/Home'
@@ -54,7 +56,7 @@ class Router extends React.Component {
 
 		return (
 
-			<ReactRouter>
+			<ConnectedRouter history={this.props.history}>
 
 				<App>
 
@@ -71,7 +73,7 @@ class Router extends React.Component {
 
 			    </App>
 				
-			</ReactRouter>
+			</ConnectedRouter>
 
 		)
 	}
