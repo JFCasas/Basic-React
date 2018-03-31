@@ -64,6 +64,8 @@ class Login extends React.Component {
 
       this.props.dispatch(actions.login(response.jwt))
 
+      this.props.dispatch(actions.loadUser(response.user))
+
       this.props.dispatch(push('/'))
     
     }).catch((error)=>{

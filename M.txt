@@ -3016,3 +3016,215 @@ export default connect(mapStateToProps)(Navigation)
 
 
 
+
+ALMACENAR INFORMACION DEL USUARIO. DISPLAY EN APPBAR
+
+
+Cuando realizamos login se nos devuelve la siguiente información en 
+
+
+requestAuth(){
+
+    const credentials = {
+
+      email : this.refs.emailField.getValue(),
+      password : this.refs.passwordField.getValue()
+    
+    }
+
+    login(credentials).then((response)=>{
+
+      console.log(response)
+
+      this.props.dispatch(actions.login(response.jwt))
+
+      this.props.dispatch(push('/'))
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+}
+
+
+En response.jwt tenemos el token
+
+En response.user tenemos la información del usuario
+
+
+Creamos en userActions.js un nuevo action creator de la siguiente manera:
+
+export function login(jwt){
+
+  return { type: 'LOG_IN', jwt}
+}
+
+export function loadUser(user){
+
+  return { type: 'LOAD_USER', user}
+}
+
+
+Posteriormente nos vamos a userReducers.js
+
+
+Hasta ahora realizabamos lo siguiente:
+
+case 'LOG_IN':
+
+      return {jwt: action.jwt}
+
+Esto puede traducirse en bugs y malfuncionamiento.
+
+Lo hacemmos de manera correcta:
+
+Clonaremos el state original, agregarle la modificación y retornarlo
+
+
+Javascript posee Object.assign() que recibe tres argumentos.
+
+El primer argumento es un objeto al cual se va a asignar el nuevo objeto creado
+
+Como segundo argumento un objeto del cual queremos pasar todas las propiedades al nuevo objeto.
+
+Tercer argumento opcional que lo que va a hacer es agregar o modificar las propiedades del objeto que estamos clonando
+
+
+Object.assign({},state,{jwt:action.jwt})
+
+Nos queda de la siguiente manera:
+
+case 'LOG_IN':
+
+      return Object.assign({},state,{jwt:action.jwt})
+
+
+
+export default function userReducer(state = {} , action ){
+
+  switch (action.type){
+    
+    case 'LOG_IN':
+
+      return Object.assign({},state,{jwt:action.jwt})
+
+    case 'LOAD_USER':
+
+      return Object.assign({},state,{
+
+        name: action.user.name,
+        _id: action.user._id,
+        email: action.user.email
+      })
+
+    default: 
+
+      return state
+  }
+
+}
+
+
+Una vez que hemos realizado esto vamos a hacer uso de esa información
+
+
+Tenemos que irnos primero a nuestro Login.js
+
+Añadimos la siguiente línea:
+
+requestAuth(){
+
+    const credentials = {
+
+      email : this.refs.emailField.getValue(),
+      password : this.refs.passwordField.getValue()
+    
+    }
+
+    login(credentials).then((response)=>{
+
+      //console.log(response)
+
+      this.props.dispatch(actions.login(response.jwt))
+
+      this.props.dispatch(actions.loadUser(response.user))
+
+      this.props.dispatch(push('/'))
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+}
+
+Ahora ya nos podemos ir a Navigation que es un Contenedor que está conectando con nuestro storage
+
+
+Le pasamos a nuestro MyAppBar el user como un prop
+
+
+<MyAppBar goHome = {this.goHome} user = {this.props.user}></MyAppBar>
+
+
+Finalmente nos vamos a nuestro componente de Presentación MyAppBar
+
+Vamos a jugar con la información que le estamos pasando:
+
+
+Nos queda de la siguiente manera:
+
+import React from 'react';
+
+import AppBar from 'material-ui/AppBar';
+
+export default class MyAppBar extends React.Component {
+
+  
+
+  setTitle(){
+
+    if (this.props.user.jwt){
+
+      return "Bienvenido " + this.getName()
+    
+    }else{
+
+      return "PLACES"
+    }
+  }
+
+  getName(){
+
+    return this.props.user.email.split('@')[0]
+  }
+
+
+  render(){
+
+    return (
+
+      <AppBar
+          
+          title= {this.setTitle()}
+
+          style ={{"backgroundColor" : "#000" }}
+
+          showMenuIconButton = {false}
+
+          titleStyle ={{"color" : "#F5F5F5", "cursor":"pointer", "textTransform": "capitalize"}}
+
+          onTitleClick={this.props.goHome}
+          
+      />
+
+    )
+  }
+
+}
+
+
+
+
+

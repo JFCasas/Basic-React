@@ -13,6 +13,8 @@ class Navigation extends React.Component {
 		super(props)
 
 		this.goHome = this.goHome.bind(this)
+
+		console.log(this.props.user.email)
 	}
 
 	goHome(){
@@ -26,7 +28,7 @@ class Navigation extends React.Component {
 
 		return(
 
-			<MyAppBar goHome = {this.goHome}></MyAppBar>
+			<MyAppBar goHome = {this.goHome} user = {this.props.user}></MyAppBar>
 
 		)
 	}
