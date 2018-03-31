@@ -18,6 +18,8 @@ import { connect } from 'react-redux'
 
 import * as actions from '../actions/userActions'
 
+import { push } from 'react-router-redux'
+
 const styles = {
   errorStyle: {
     color: orange500,
@@ -61,6 +63,8 @@ class Login extends React.Component {
       //console.log(response)
 
       this.props.dispatch(actions.login(response.jwt))
+
+      this.props.dispatch(push('/'))
     
     }).catch((error)=>{
 

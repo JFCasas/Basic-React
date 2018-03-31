@@ -2699,6 +2699,9 @@ Antes de realizar esto llevamos a cabo una purga de errores en consola. No todos
 
 
 
+
+
+
 INSTALAR Y CONFIGURAR REACT-ROUTER-REDUX
 
 Instalamos de la siguiente manera:
@@ -2899,3 +2902,53 @@ import { ConnectedRouter} from 'react-router-redux'
 Sustituimos el ReactRouter por este ConnectedRouter
 
 A este ConnectedRouter le pasamos un prop history con el historial
+
+
+
+
+
+
+DISPATCH DE ACCIONES DE NAVEGACION
+
+Queremos que despues de realizar la autenticación podamos realizar un redireccionamiento
+
+Nos vamos a Login
+
+import { push } from 'react-router-redux'
+
+.........
+
+requestAuth(){
+
+    const credentials = {
+
+      email : this.refs.emailField.getValue(),
+      password : this.refs.passwordField.getValue()
+    
+    }
+
+    login(credentials).then((response)=>{
+
+      //console.log(response)
+
+      this.props.dispatch(actions.login(response.jwt))
+
+      this.props.dispatch(push('/'))
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+}
+
+Ejecutamos la función push que la importamos de 'react-router-redux'
+
+Es un action creator de react-router-redux. Genera una acción con el type y la información necesaria para que el routerReducer se encarge de llevar a cabo el cambio en la navegación.
+
+Vemos que ahora somos capaces de realizar dispatch de acciones que se traduzcan en modificaciones en la navegación.
+
+
+
+
+
