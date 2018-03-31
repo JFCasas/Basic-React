@@ -2952,3 +2952,67 @@ Vemos que ahora somos capaces de realizar dispatch de acciones que se traduzcan 
 
 
 
+MODIFICACIÓN BARRA DE NAVEGACION. INTEGRACIÓN CON REDUX. CONTAINER COMPONENT
+
+
+Nuestra barra de navegación (AppBar) es un componente de presentación
+
+No sería aconsejable en un componente de presentación llevar a cabo la anterior integración.
+
+Para ello vamos a realizar un nuevo componente que va a ser un Container Component en el que vamos a realizar la integración con Redux
+
+Este nuevo componente contenedor contendrá a AppBar y será en este nuevo componente donde realicemos la integración con Redux
+
+Creamos un nuevo componente al que vamos a llamar Navigation que va a ser un Container Component
+
+
+
+import React from 'react'
+
+import MyAppBar from './MyAppBar'
+
+import { connect } from 'react-redux'
+
+import { push } from 'react-router-redux'
+
+class Navigation extends React.Component {
+
+  constructor(props){
+
+    super(props)
+
+    this.goHome = this.goHome.bind(this)
+  }
+
+  goHome(){
+
+      this.props.dispatch(push('/'))
+    }
+
+
+
+  render(){
+
+    return(
+
+      <MyAppBar goHome = {this.goHome}></MyAppBar>
+
+    )
+  }
+}
+
+
+
+function mapStateToProps(state,ownProps){
+
+  return {
+
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Navigation)
+
+
+
+

@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 
 import './App.css';
 
-import MyAppBar from './components/MyAppBar'
+import Navigation from './components/Navigation'
 
 class App extends Component {
 
@@ -26,7 +26,7 @@ class App extends Component {
 
     //console.log(data)
 
-    this.goHome = this.goHome.bind(this)
+    
 
   }
 
@@ -40,20 +40,14 @@ class App extends Component {
       })
   }
 
-  goHome(){
-
-      this.props.history.push('/')
-  }
-
   
-
-  render() {
+render() {
     
     return (
 
       <MuiThemeProvider>
 
-        <MyAppBar goHome = {this.goHome} ></MyAppBar>
+        <Navigation></Navigation>
 
         <TransitionGroup>
           
