@@ -2,6 +2,12 @@ import React from 'react';
 
 import AppBar from 'material-ui/AppBar';
 
+import LogoutButton from './LogoutButton'
+
+import LoginButton from './LoginButton'
+
+
+
 export default class MyAppBar extends React.Component {
 
 	
@@ -20,7 +26,15 @@ export default class MyAppBar extends React.Component {
 
 	getName(){
 
-		return this.props.user.email.split('@')[0]
+		if (this.props.user.email) {
+
+			return this.props.user.email.split('@')[0]
+
+		}else{
+
+			return ""
+		}
+
 	}
 
 
@@ -39,6 +53,8 @@ export default class MyAppBar extends React.Component {
 			    titleStyle ={{"color" : "#F5F5F5", "cursor":"pointer", "textTransform": "capitalize"}}
 
 			    onTitleClick={this.props.goHome}
+
+			    iconElementRight={this.props.user.jwt ? <LogoutButton logout = {this.props.logout} /> : <LoginButton/>}
 			    
 			/>
 

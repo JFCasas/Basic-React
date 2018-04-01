@@ -3228,3 +3228,145 @@ export default class MyAppBar extends React.Component {
 
 
 
+
+
+CERRAR SESION
+
+Creamos 2 nuevos componentes que vamos a integrar en MyAppBar.js
+
+LoginButton y LogoutButton
+
+Los creamos, los importamos y los integramos de la siguiente manera:
+
+iconElementRight={this.props.user.jwt ? <LogoutButton logout = {this.props.logout} /> : <LoginButton/>}
+
+
+Al botón le pasamos en un prop una función logout
+
+A su vez esta función es un prop que hemos pasado desde Navigation que es nuestro Container Component
+
+El botón me queda de la siguiente manera:
+
+import React from 'react'
+
+import FlatButton from 'material-ui/FlatButton';
+
+export default class LogoutButton extends React.Component{
+
+  render(){
+
+    return(
+
+
+      <FlatButton  label="Logout" 
+            style ={{"backgroundColor" : "#000", "color" : "#F5F5F5" }}
+            onClick = {this.props.logout}
+
+             />
+    )
+  }
+}
+
+En Navigation por lo tanto vamos a tener la siguiente función:
+
+logout(){
+
+  this.props.dispatch(logout())
+
+  this.props.dispatch(push('/'))
+}
+
+Le pasamos a MyAppBar la funcion de la siguiente manera:
+
+<MyAppBar goHome = {this.goHome} user = {this.props.user} logout = {this.logout}></MyAppBar>
+
+
+Ahora tenemos que configurar esta parte para que se produzca el logout
+
+userActions queda de la siguiente manera:
+
+export function login(jwt){
+
+  return { type: 'LOG_IN', jwt}
+}
+
+export function loadUser(user){
+
+  //console.log(user)
+
+  return { type: 'LOAD_USER', user}
+}
+
+export function logout(){
+
+  return { type: 'LOG_OUT'}
+}
+
+
+userReducers queda de la siguiente manera:
+
+export default function userReducer(state = {} , action ){
+
+  switch (action.type){
+    
+    case 'LOG_IN':
+
+      return Object.assign({},state,{jwt:action.jwt})
+
+    case 'LOG_OUT':
+
+      return {}
+
+    case 'LOAD_USER':
+
+      return Object.assign({},state,{
+
+        name: action.user.name,
+        _id: action.user._id,
+        email: action.user.email
+      })
+
+    default: 
+
+      return state
+  }
+
+}
+
+Básicamente retornamos un objeto vacío
+
+
+En Navigation importante la siguiente línea:
+
+import { logout } from '../actions/userActions'
+
+
+Para el botón de Login nos queda de uana manera bastante sencilla:
+
+import React from 'react'
+
+import FlatButton from 'material-ui/FlatButton';
+
+import {Link} from 'react-router-dom'
+
+export default class LoginButton extends React.Component{
+
+  render(){
+
+    return(
+
+      <Link to="/login">
+
+        <FlatButton  label="Login" 
+              style ={{"backgroundColor" : "#000", "color" : "#F5F5F5" }} />
+        
+
+      </Link>
+
+
+      
+    )
+  }
+}
+
+

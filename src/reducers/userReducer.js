@@ -6,6 +6,10 @@ export default function userReducer(state = {} , action ){
 
 			return Object.assign({},state,{jwt:action.jwt})
 
+		case 'LOG_OUT':
+
+			return {}
+
 		case 'LOAD_USER':
 
 			return Object.assign({},state,{
