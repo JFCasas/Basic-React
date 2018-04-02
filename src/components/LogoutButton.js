@@ -1,19 +1,24 @@
 import React from 'react'
 
-import FlatButton from 'material-ui/FlatButton';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 export default class LogoutButton extends React.Component{
 
 	render(){
 
 		return(
-
-
-			<FlatButton  label="Logout" 
-						style ={{"backgroundColor" : "#000", "color" : "#F5F5F5" }}
-						onClick = {this.props.logout}
-
-						 />
+			
+			<IconMenu
+     			 iconButtonElement={<IconButton iconStyle={{"fill":"white"}}><MoreVertIcon /></IconButton>}
+      			 anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+      			 targetOrigin={{horizontal: 'left', vertical: 'top'}}
+    		>
+      			<MenuItem primaryText="LOGOUT" onClick = {this.props.logout}/>
+      			
+    		</IconMenu>
 		)
 	}
 }

@@ -3370,3 +3370,49 @@ export default class LoginButton extends React.Component{
 }
 
 
+
+
+
+
+
+MENU DESPLEGABLE PARA LOGOUT. ICON MENU
+
+Vamos a cambiar el botón de cerrar sesión por un menu que desplegue más de una opción.
+
+Vamos a utilizar un Icon Menu de Material Design
+
+
+Único que vamos a hacer notar es como damos estilo al Icon de la siguiente manera:
+
+iconButtonElement={<IconButton iconStyle={{"fill":"white"}}><MoreVertIcon /></IconButton>}
+
+
+Componente queda de la siguiente manera:
+
+import React from 'react'
+
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
+export default class LogoutButton extends React.Component{
+
+  render(){
+
+    return(
+      
+      <IconMenu
+           iconButtonElement={<IconButton iconStyle={{"fill":"white"}}><MoreVertIcon /></IconButton>}
+             anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+             targetOrigin={{horizontal: 'left', vertical: 'top'}}
+        >
+            <MenuItem primaryText="LOGOUT" onClick = {this.props.logout}/>
+            
+        </IconMenu>
+    )
+  }
+}
+
+
+
