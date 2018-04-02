@@ -16,7 +16,7 @@ import App from './App'
 
 import Home from './pages/Home'
 import Login from './pages/Login'
-
+import Signup from './pages/Signup'
 import Prueba from './pages/Prueba'
 import Dashboard from './pages/Dashboard'
 import New from './pages/New'
@@ -64,7 +64,7 @@ class Router extends React.Component {
 				  	<Route exact path="/" component={this.home()}></Route>
 				  	<Route path="/lugares/:slug" component={Place}></Route>
 		            <Route path="/login" component={Login}></Route>
-		            <Route path="/signup" component={Login}></Route>
+		            <Route path="/signup" component={Signup}></Route>
 		            {this.authorizedRoutes()}
 
 				  </Switch>

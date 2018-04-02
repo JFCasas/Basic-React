@@ -26,9 +26,9 @@ export default class MyAppBar extends React.Component {
 
 	getName(){
 
-		if (this.props.user.email) {
+		if (this.props.user.name) {
 
-			return this.props.user.email.split('@')[0]
+			return this.props.user.name
 
 		}else{
 

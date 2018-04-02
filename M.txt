@@ -3416,3 +3416,23 @@ export default class LogoutButton extends React.Component{
 
 
 
+
+FINALIZACION CREAR CUENTAS DE USUARIO
+
+Cuando creamos  el usuario vamos a especificar en un campo el nombre del usuario.
+
+Dado que en la estructura que tenemos ahora para 'login y logout' utilizamos el mismo componente Login y esto va a provocar problemas con los refs........
+
+Vamos a volver a una situación donde creamos un componente para el login y otro para el logout
+
+
+Primero por lo tanto llevamos a cabo la separación de ambos y que todo funciones como antes:
+
+
+En componente Signup agregamos un nuevo campo para que en el registro del usuario se lleve a cabo la configuración del nombre del usuario
+
+
+Una vez que ya estamos creando nuesvos usuarios con un nombre...vamos a sacar este en la AppBar
+
+
+

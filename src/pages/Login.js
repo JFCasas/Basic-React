@@ -43,10 +43,6 @@ class Login extends React.Component {
 
     this.requestAuth = this.requestAuth.bind(this)
 
-    this.createAccount = this.createAccount.bind(this)
-
-    
-
   }
 
 	requestAuth(){
@@ -75,28 +71,7 @@ class Login extends React.Component {
 
   }
 
-  createAccount(){
-
-    const credentials = {
-
-      email : this.refs.emailField.getValue(),
-      password : this.refs.passwordField.getValue()
-    
-    }
-
-
-    signUp(credentials).then((response)=>{
-
-      console.log(response)
-
-      this.props.dispatch(actions.login(response.jwt))
-    
-    }).catch((error)=>{
-
-      console.log(error)
-    })
-
-  }
+  
 
 
   render(){
@@ -139,64 +114,19 @@ class Login extends React.Component {
 
 				</div>
 
-			   <div>
+			  <div >
 
-          <Route path="/login" exact render={()=>{
+          <RaisedButton label="Login" secondary={true} 
+            style = {{"width" : "10vw", "marginTop" : "5em"}}
+            onClick={this.requestAuth}
+          />
 
-            return(
-
-              <div >
-
-                <RaisedButton label="Login" secondary={true} 
-                  style = {{"width" : "10vw", "marginTop" : "5em"}}
-                  onClick={this.requestAuth}
-                />
-
-                <Link to="/signup" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>No tengo cuenta</Link>
-            
-              </div>
-            )
-
-
-          }}>
-          
-          </Route>
-
-          <Route path="/signup" exact render={()=>{
-
-            return(
-
-              <div >
-
-                <RaisedButton label="Registrarse" secondary={true} 
-                  style = {{"width" : "10vw", "marginTop" : "5em"}}
-                  onClick={this.createAccount}
-                />
-
-                <Link to="/login" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>Ya tengo cuenta</Link>
-                
-
-              </div>
-            )
-
-
-          }}>
-          
-          </Route>
-
-          
-        
+          <Link to="/signup" style={{"textDecoration": "none", "marginLeft" : "2em", "color" : grey900}}>No tengo cuenta</Link>
+      
         </div>
-
-        
-
-				
-
-			</div>
-
-			
-
-		)
+      
+      </div>
+    )
 	}
 
 }
