@@ -14,7 +14,8 @@
     "react-scripts": "1.1.1",
     "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
-    "redux-localstorage": "^0.4.1"
+    "redux-localstorage": "^0.4.1",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

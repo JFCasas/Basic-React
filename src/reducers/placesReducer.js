@@ -1,4 +1,4 @@
-export default function placesReducer(state = [1] , action ){
+export default function placesReducer(state = [] , action ){
 
 	switch (action.type){
 		

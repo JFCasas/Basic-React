@@ -7,43 +7,30 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 //import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
-import {getPlaces} from '../requests/places'
-
 import PlaceCardDashboard from '../components/PlaceCardDashboard'
 
-export default class Dashboard extends React.Component {
+import { connect } from 'react-redux'
+
+import * as actions from '../actions/placesActions'
+
+class Dashboard extends React.Component {
 
   constructor(props){
 
       super(props)
 
-      this.state = {
-
-        places: []
-      
-      }
       this.loadPlaces()
 
   }
 
   loadPlaces(){
 
-    getPlaces().then((jsonR)=>{
-
-      //console.log(jsonR);
-
-      this.setState({
-
-        places : jsonR.docs
-      
-      })
-    
-    })
+      this.props.dispatch(actions.loadAll())
   }
 
   places(){
 
-      return this.state.places.map((place,index)=>{
+      return this.props.places.map((place,index)=>{
 
         return(
 
@@ -106,5 +93,16 @@ export default class Dashboard extends React.Component {
 	}
 
 }
+
+
+function mapStateToProps(state,ownProps){
+
+  return {
+
+    places: state.places
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)
 
 

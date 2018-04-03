@@ -3436,3 +3436,121 @@ Una vez que ya estamos creando nuesvos usuarios con un nombre...vamos a sacar es
 
 
 
+
+
+INTEGRAR REDUX-THUNK. DISPATCH DE ACCIONES THUNK
+
+Vamos a ver como integrar nuestras peticiones asíncronas con nuestro flujo de datos con Redux
+
+Instalamos
+
+npm install redux-thunk
+
+Lo integramos como un middleware del store de redux
+
+configureStore.js
+
+import thunk from 'redux-thunk'
+
+export default function configureStore(middleware){
+
+  return createStore(
+    rootReducer,
+    applyMiddleware(middleware,thunk),
+    enhancer)
+}
+
+
+Con esto hemos configurado el middleware que necesitamos para que nuestras acciones no necesariamente tengan que ser objetos sino que puedan ser funciones.
+
+Hasta ahora teníamos cosas de la siguiente manera:
+
+export function loadPlaces(places){
+
+  return { type: 'LOAD_PLACES', places}
+
+}
+
+Ahora vamos a poder retornar una función.
+
+Vamos a crear nuestro primer thunk, nuestra primera función que va a realizar una petición asíncrona y que después va a realizar el dispatch para almacenar los datos en el store
+
+
+placesActions.js
+
+La función retornada va a tener como parámetros dispatch y getState. Ambas son funciones.
+
+dispatch es una función que hace distpatch de otras funciones
+
+getState es una función que nos permite obtener el estado actual del storage
+
+Para poder realizar la petición que la tenemos en el archivo requests, primero lo vamos a tener que importar.
+
+import * as requests from '../requests/places'
+
+export function loadPlaces(places){
+
+  return { type: 'LOAD_PLACES', places}
+}
+
+export function loadAll(){
+
+  return (dispatch,getState) =>{
+
+    requests.getPlaces().then((result)=>{
+
+      console.log(result)
+
+      dispatch(loadPlaces(result.docs))
+    })
+  }
+}
+
+
+Convertimos Dashboard en un Container de la manera habitual
+
+
+Marcamos lo más interesante:
+
+...................
+
+import { connect } from 'react-redux'
+
+import * as actions from '../actions/placesActions'
+
+class Dashboard extends React.Component {
+
+  constructor(props){
+
+      super(props)
+
+      this.loadPlaces()
+
+  }
+
+  loadPlaces(){
+
+      this.props.dispatch(actions.loadAll())
+  }
+
+  places(){
+
+      return this.props.places.map((place,index)=>{
+
+        return(
+
+          <PlaceCardDashboard place={place} key={index} onRemove={this.hidePlace}></PlaceCardDashboard>
+        )
+
+      })
+  }
+
+  ........................................
+
+
+
+
+
+
+
+
