@@ -3587,3 +3587,20 @@ function getPlaces(){
 
 
 
+REACT MODAL PARA LAS VISITAS
+
+
+
+En la vista de cada negocio ponemos un botón de Agregar Comentario
+
+npm install react-modal
+
+
+Creamos un nuevo componente que le llamamos VisitModal.js donde integramos el componente 
+
+Lo integramos dentro de Place.js que es el componente que utilizamos para presentar los negocios
+
+
+
+
+

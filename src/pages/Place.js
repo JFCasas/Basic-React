@@ -9,6 +9,8 @@ import {getPlace} from '../requests/places'
 import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
+import VisitModal from '../components/VisitModal'
+
 class Place extends React.Component {
 
 	constructor(props){
@@ -23,10 +25,13 @@ class Place extends React.Component {
 
 	    this.state = {
 
-       		place: {}
+       		place: {},
+       		modalIsOpen: false
       
       	}
       	this.loadPlace(slug)
+      	this.openModal = this.openModal.bind(this)
+      	this.closeModal = this.closeModal.bind(this)
      }
 
 	loadPlace(slug){
@@ -38,18 +43,33 @@ class Place extends React.Component {
         		place : jsonR
       
       		})
-
-
-
 		})
 
 	}
+
+	openModal() {
+    	
+    	this.setState({modalIsOpen: true});
+  	}
+
+  	closeModal() {
+    	
+    	this.setState({modalIsOpen: false});
+ 	 
+ 	 }
 
 	render(){
 
 		return (
 
 			<div  className = "container" style={{ "width":"70%", "margin" : "0 auto"}} >
+
+				<VisitModal isOpen = {this.state.modalIsOpen} closeModal = {this.closeModal}
+							place = {this.state.place}
+				>
+					
+
+				</VisitModal>
 
 				<Card >
 				    
@@ -91,7 +111,8 @@ class Place extends React.Component {
 					      		Hora de Cierre:  {this.state.place.closeHour}
 					    	</CardText>
 
-					    	
+					    	<FlatButton label="Agregar Comentario" secondary={true}
+					    				onClick={this.openModal} />
 					    
 					    	
 					    </div>

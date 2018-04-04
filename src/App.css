@@ -164,6 +164,34 @@
   transform: translateX(0);
 }
 
+.modalVisit{
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.modalForm{
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	height: 60vh;
+	
+}
+
+.modalButtons{
+
+	display: flex;
+	flex-direction: row;
+	margin-top: 4em;
+	
+}
+
+
+
 
 
 
