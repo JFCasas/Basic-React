@@ -1,6 +1,8 @@
+import config from '../config/config'
+
 function getPlaces(){
 
-	return fetch("http://127.0.0.1:3001/places")
+	return fetch(config.url+"/places")
 
 		.then((response)=>{
 
@@ -15,7 +17,7 @@ function getPlaces(){
 
 function getPlace(slug){
 
-	return fetch("http://127.0.0.1:3001/places/" + slug)
+	return fetch(config.url + "/places/" + slug)
 
 		.then((response)=>{
 

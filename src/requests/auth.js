@@ -1,6 +1,8 @@
+import config from '../config/config'
+
 function login(credentials){
 
-	return fetch("http://127.0.0.1:3001/sessions",{
+	return fetch(config.url + "/sessions",{
 
 		method: 'POST',
 		body: JSON.stringify(credentials),
@@ -20,7 +22,7 @@ function login(credentials){
 
 function signUp(credentials){
 
-	return fetch("http://127.0.0.1:3001/users",{
+	return fetch(config.url + "/users",{
 
 		method: 'POST',
 		body: JSON.stringify(credentials),

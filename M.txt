@@ -3549,7 +3549,40 @@ class Dashboard extends React.Component {
 
 
 
+ARCHIVO DE CONFIGURACION GLOBAL
 
+
+Tanto en las peticiones de autenticación como en las peticiones a los negocios tenemos "hardcodeado" nuestro dominio.
+
+
+Creamos un nuevo folder en src llamado config. config.js
+
+export default {
+
+  url: 'http://127.0.0.1:3001'
+}
+
+
+Posteriormente en los ficheros donde tenemos configuradas las peticiones hacemos algo de esta manera:
+
+import config from '../config/config'
+
+function getPlaces(){
+
+  return fetch(config.url+"/places")
+
+    .then((response)=>{
+
+      return response.json()
+    })
+
+    .catch((error)=>{
+
+      console.log(error)
+    })
+}
+
+........................
 
 
 
