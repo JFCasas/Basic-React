@@ -3604,3 +3604,11 @@ Lo integramos dentro de Place.js que es el componente que utilizamos para presen
 
 
 
+
+
+PÁGINA PARA NUEVOS NEGOCIOS
+
+Cambiamos el nombre de New a NewPlace
+
+Básicamente un componente con campos para un formulario y que vamos a integrar con redux
+

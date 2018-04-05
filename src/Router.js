@@ -19,7 +19,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Prueba from './pages/Prueba'
 import Dashboard from './pages/Dashboard'
-import New from './pages/New'
+import NewPlace from './pages/NewPlace'
 import Place from './pages/Place'
 
 
@@ -35,7 +35,7 @@ class Router extends React.Component {
 				<div>
 
 					<Route exact path="/prueba" component={Prueba}></Route>
-					<Route exact path="/new" component={New}></Route>
+					<Route exact path="/new" component={NewPlace}></Route>
 					
 
 				</div>
