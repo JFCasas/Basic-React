@@ -3662,3 +3662,41 @@ Importamos la función en NewPlace.js
 
 
 
+POST PARA NEGOCIOS II
+
+
+Creamos dentro de componente la función createPlace1
+
+createPlace1(){
+
+    const data = {
+
+      title : this.refs.titleField.getValue(),
+      decription : this.refs.descriptionField.getValue()
+    }
+
+     
+    createPlace(data,this.props.user.jwt).then((response)=>{
+
+      console.log(response)
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+    
+
+  }
+
+Redireccionamos a / 
+
+import { push } from 'react-router-redux'
+
+this.props.dispatch(push('/'))
+
+
+
+
+
+

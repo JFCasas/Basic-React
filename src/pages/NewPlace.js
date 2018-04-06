@@ -11,6 +11,9 @@ import {orange500,grey900 } from 'material-ui/styles/colors';
 
 import { createPlace } from '../requests/places'
 
+import { push } from 'react-router-redux'
+
+
 const styles = {
   errorStyle: {
     color: orange500,
@@ -30,6 +33,32 @@ class NewPlace extends React.Component {
 	constructor(props){
 
 		super(props)
+
+		this.createPlace1 = this.createPlace1.bind(this)
+	}
+
+	createPlace1(){
+
+		const data = {
+
+			title : this.refs.titleField.getValue(),
+      		decription : this.refs.descriptionField.getValue()
+		}
+
+		 
+		createPlace(data,this.props.user.jwt).then((response)=>{
+
+			console.log(response)
+
+			this.props.dispatch(push('/'))
+		
+		}).catch((error)=>{
+
+			console.log(error)
+		})
+
+
+
 	}
 
 	render(){
@@ -85,7 +114,7 @@ class NewPlace extends React.Component {
 
 				          <RaisedButton label="Guardar" secondary={true} 
 				            style = {{"width" : "10vw", "marginTop" : "5em"}}
-				            onClick = {this.createPlace}
+				            onClick = {this.createPlace1}
 				          />
 
 				          
@@ -113,7 +142,7 @@ function mapStateToProps(state,ownProps){
 
 	return {
 
-		places: state.places
+		user: state.user
 	}
 }
 
