@@ -30,7 +30,35 @@ function getPlace(slug){
 		})
 }
 
-export {getPlaces, getPlace}
+function createPlace(data,jwt){
+
+	let formData = new FormData()
+
+	for (let field in data){
+
+		formData.append(field,data[field])
+	}
+
+
+	return fetch(config.url+"/places", {
+
+		method: 'POST',
+		body: formData,
+		headers:{
+			'Authorization' : 'Bearer ' + jwt,
+			'Accept': 'application/json'
+		}
+	}).then((response)=>{
+
+		return response.json()
+	
+	}).catch((error)=>{
+
+		console.log(error)
+	})
+}
+
+export {getPlaces, getPlace,createPlace}
 
 
 export default {

@@ -3612,3 +3612,53 @@ Cambiamos el nombre de New a NewPlace
 
 Básicamente un componente con campos para un formulario y que vamos a integrar con redux
 
+
+
+
+
+POST PARA NEGOCIOS
+
+
+En body vamos a enviar un objeto de la clase formData lo cual nos va a permitir agregar los archivos que luego vamos a subir
+
+Ese formData lo vamos a a generar en base de lo que se nos envíe en el JSON
+
+
+En requests/places.js incorporamos la nueva función:
+
+function createPlace(data,jwt){
+
+  let formData = new FormData()
+
+  for (let field in data){
+
+    formData.append(field,data[field])
+  }
+
+
+  return fetch(config.url+"/places", {
+
+    method: 'POST',
+    body: formData,
+    headers:{
+      'Authorization' : 'Bearer ' + jwt,
+      'Accept': 'application/json'
+    }
+  }).then((response)=>{
+
+    return response.json()
+  
+  }).catch((error)=>{
+
+    console.log(error)
+  })
+}
+
+export {getPlaces, getPlace,createPlace}
+
+
+Importamos la función en NewPlace.js
+
+
+
+

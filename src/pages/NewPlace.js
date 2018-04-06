@@ -9,6 +9,8 @@ import {Card, CardActions} from 'material-ui/Card';
 
 import {orange500,grey900 } from 'material-ui/styles/colors';
 
+import { createPlace } from '../requests/places'
+
 const styles = {
   errorStyle: {
     color: orange500,
