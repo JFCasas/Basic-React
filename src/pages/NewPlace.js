@@ -13,6 +13,8 @@ import { createPlace } from '../requests/places'
 
 import { push } from 'react-router-redux'
 
+import Uploader from '../components/Uploader'
+
 
 const styles = {
   errorStyle: {
@@ -42,7 +44,7 @@ class NewPlace extends React.Component {
 		const data = {
 
 			title : this.refs.titleField.getValue(),
-      		decription : this.refs.descriptionField.getValue()
+      		description : this.refs.descriptionField.getValue()
 		}
 
 		 
@@ -107,6 +109,8 @@ class NewPlace extends React.Component {
 	          				
 
 	          			</div>
+
+	          			<Uploader label = "Subir Avatar"></Uploader>
 
     					         			
 
