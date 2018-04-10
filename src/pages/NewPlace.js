@@ -37,6 +37,14 @@ class NewPlace extends React.Component {
 		super(props)
 
 		this.createPlace1 = this.createPlace1.bind(this)
+		this.getFile = this.getFile.bind(this)
+
+		this.state =  {
+
+			file : {}
+		}
+	
+
 	}
 
 	createPlace1(){
@@ -47,7 +55,11 @@ class NewPlace extends React.Component {
       		description : this.refs.descriptionField.getValue()
 		}
 
-		 
+		if (this.state.file){
+
+			data.cover = this.state.file
+		}
+
 		createPlace(data,this.props.user.jwt).then((response)=>{
 
 			console.log(response)
@@ -59,9 +71,17 @@ class NewPlace extends React.Component {
 			console.log(error)
 		})
 
-
-
 	}
+
+	getFile(file){
+
+		this.setState({
+
+			file : file
+		})
+	}
+
+
 
 	render(){
 
@@ -110,7 +130,7 @@ class NewPlace extends React.Component {
 
 	          			</div>
 
-	          			<Uploader label = "Subir Avatar"></Uploader>
+	          			<Uploader label = "Subir Avatar" getFile = {this.getFile}></Uploader>
 
     					         			
 

@@ -10,7 +10,7 @@ export default class Uploader extends React.Component{
 
 		this.state = {
   
-  			file: {name: ''}
+  			file: {}
 		}
 
 		this.openInput = this.openInput.bind(this)
@@ -27,13 +27,18 @@ export default class Uploader extends React.Component{
 
 		let file = ev.target.files[0]
 		if (!file) return
+		
 		//console.log(file)
 
 		this.setState ({
 
 			file: file
 		})
+
+		this.props.getFile(file)
 	}
+
+
 
 	render(){
 

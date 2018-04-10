@@ -3805,6 +3805,46 @@ handleFile(ev){
 
 
 
+SUBIDA DE IMAGENES DE REACT A NODE
+
+Necesito pasar la información del componente Uploader a NewPlace básicamente.
+
+
+Únicamente vamos realizar el tema para el cover que es el que estoy utilizando en nuestro proyecto.
+
+
+Para llevar a cabo el paso del fichero de Uploader a NewPlace creamos la función 
+
+getFile
+
+
+Una vez que obtenemos el fichero lo pasamos de la siguiente manera:
+
+createPlace1(){
+
+    const data = {
+
+      title : this.refs.titleField.getValue(),
+          description : this.refs.descriptionField.getValue()
+    }
+
+    if (this.state.file){
+
+      data.cover = this.state.file
+    }
+
+    createPlace(data,this.props.user.jwt).then((response)=>{
+
+      console.log(response)
+
+      this.props.dispatch(push('/'))
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+
+  }
 
 
 
