@@ -3850,3 +3850,223 @@ createPlace1(){
 
 
 
+
+AGREGAR VISITAS
+
+
+De acuerdo a nuestro servicio WEB habría que realizar un POST a 127.0.0.1:3001/visists
+
+En el controlador tenemos lo siguiente:
+
+function create(req,res){
+
+  Visit.create({
+
+    _place: req.body._place,
+    
+    _user:req.user.id,
+
+    observation:req.body.observation,
+    reaction: req.body.reaction
+
+
+  }).then((doc)=>{
+
+    res.json(doc)
+
+
+  }).catch((err)=>{
+    
+    console.log(err)
+    res.json(err)
+
+  })
+}
+
+Por supuesto para realizar el POST necesitamos el token
+
+
+Por lo tanto vamos a necesitar de momento acceder al state de alguna manera:
+
+
+Lo primero que vamos a realizar es un Container Component
+
+VisitModalContainer
+
+import React from 'react'
+
+import { connect } from 'react-redux'
+
+import VisitModal from '../components/VisitModal'
+
+
+class VisitModalContainer extends React.Component {
+
+  render(){
+
+    return(
+
+      <VisitModal isOpen = {this.props.isOpen} closeModal = {this.props.closeModal}
+              place = {this.props.place} 
+
+      >
+        
+
+      </VisitModal>
+      
+
+
+    )
+  }
+}
+
+function mapStateToProps(state,ownProps){
+
+  return {
+
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(VisitModalContainer)
+
+
+Primero llevamos a cabo el POST de la manera habitual:
+
+requests/visits
+
+import config from '../config/config'
+
+function createVisit(data,jwt){
+
+  return fetch(config.url + "/visits",{
+
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers:{
+      'Authorization' : 'Bearer ' + jwt,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }).then((response)=>{
+
+      return response.json()
+  
+  }).catch((error)=>{
+
+    console.log(error)
+  })
+}
+
+export { createVisit }
+
+
+En nuestro componente:
+
+createVisit(){
+
+    const data = {
+
+      _place : this.props.place._id,
+      observation : this.refs.observationField.getValue(),
+
+    }
+
+    //console.log(this.props.place)
+    //console.log(this.props.jwt)
+
+    createVisit(data,this.props.jwt).then((response)=>{
+
+      console.log(response)
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+    
+  }
+
+
+
+Vamos a realizarlo ahora integrando en redux
+
+Creamos visitsActions.js
+
+import * as requests from '../requests/visits'
+
+export function addVisitSuccess(visit){
+
+  return {type: 'ADD_VISIT' , visit}
+}
+
+
+export function addVisit(data){
+
+  return(dispatch,getState) => {
+
+    let user = getState().user
+
+    if (!user) return null
+
+    requests.createVisit(data,user.jwt).then((result)=>{
+
+      dispatch(addVisitSuccess(result))
+    })
+  }
+}
+
+Creamos visitsReducer.js
+
+export default function visitsReducer(state = [] , action ){
+
+  switch (action.type){
+    
+    case 'ADD_VISIT':
+
+      return [action.visit].concat(state)
+
+    default: 
+
+      return state
+  }
+
+}
+
+
+Modificamos en componente:
+
+createVisit(){
+
+    const data = {
+
+      _place : this.props.place._id,
+      observation : this.refs.observationField.getValue(),
+
+    }
+
+    //console.log(this.props.place)
+    //console.log(this.props.jwt)
+
+    /*createVisit(data,this.props.jwt).then((response)=>{
+
+      console.log(response)
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })*/
+
+    this.props.dispatch(actions.addVisit(data))
+
+    
+    this.props.dispatch(push('/'))
+
+    
+}
+
+
+
+
+
+
+

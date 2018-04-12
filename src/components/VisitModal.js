@@ -8,6 +8,14 @@ import TextField from 'material-ui/TextField';
 
 import {orange500,grey900 } from 'material-ui/styles/colors';
 
+import { createVisit } from '../requests/visits'
+
+import * as actions from '../actions/visitsActions'
+
+
+
+import { push } from 'react-router-redux'
+
 const customStyles = {
   content : {
     top                   : '50%',
@@ -43,8 +51,36 @@ export default class VisitModal extends React.Component {
 	constructor(props){
 
 		super(props)
+
+		this.createVisit = this.createVisit.bind(this)
 		
+	}
+
+	createVisit(){
+
+		const data = {
+
+			_place : this.props.place._id,
+			observation : this.refs.observationField.getValue(),
+
+		}
+
+		//console.log(this.props.place)
+		//console.log(this.props.jwt)
+
+		/*createVisit(data,this.props.jwt).then((response)=>{
+
+			console.log(response)
 		
+		}).catch((error)=>{
+
+			console.log(error)
+		})*/
+
+		this.props.dispatch(actions.addVisit(data))
+
+		this.props.dispatch(push('/'))
+
 	}
 
 	render() {
@@ -87,28 +123,23 @@ export default class VisitModal extends React.Component {
 
     					<div className = "modalButtons" >
     						
-    						<RaisedButton label="Guardar"  />
+    						<RaisedButton label="Guardar"
+    										onClick = {this.createVisit}
+    						  />
+		          			
+
 		          			<FlatButton label="Close" secondary={true} onClick={this.props.closeModal}
 		          						style = {{"marginLeft" : "1em"}}
 		          			/>
 
     					</div>
 
-		          		
-		          		
-		          		
 		          	</div>
 
-
-
-		          	
-		          	
-
-		          </div>
-		          
-		          
+				  </div>
 		          
 		        </Modal>
+		    
 		    </div>
 
 		)

@@ -9,7 +9,9 @@ import {getPlace} from '../requests/places'
 import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-import VisitModal from '../components/VisitModal'
+
+
+import VisitModalContainer from '../containers/VisitModalContainer'
 
 class Place extends React.Component {
 
@@ -64,12 +66,12 @@ class Place extends React.Component {
 
 			<div  className = "container" style={{ "width":"70%", "margin" : "0 auto"}} >
 
-				<VisitModal isOpen = {this.state.modalIsOpen} closeModal = {this.closeModal}
+				<VisitModalContainer isOpen = {this.state.modalIsOpen} closeModal = {this.closeModal}
 							place = {this.state.place}
 				>
 					
 
-				</VisitModal>
+				</VisitModalContainer>
 
 				<Card >
 				    

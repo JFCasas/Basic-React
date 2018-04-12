@@ -11,7 +11,7 @@ export function loadAll(){
 
 		requests.getPlaces().then((result)=>{
 
-			console.log(result)
+			//console.log(result)
 
 			dispatch(loadPlaces(result.docs))
 		})
