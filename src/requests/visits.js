@@ -21,4 +21,20 @@ function createVisit(data,jwt){
 	})
 }
 
-export { createVisit }
+function loadVisitsPlace(slug){
+
+	return fetch(config.url + "/places/" + slug + "/visits" )
+
+		.then((response)=>{
+
+			return response.json()
+		
+		}).catch((error)=>{
+
+			console.log(error)
+		})
+	
+}
+
+
+export { createVisit , loadVisitsPlace }

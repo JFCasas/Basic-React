@@ -10,8 +10,13 @@ import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Car
 import FlatButton from 'material-ui/FlatButton';
 
 
-
 import VisitModalContainer from '../containers/VisitModalContainer'
+
+import { loadVisitsPlace } from '../requests/visits'
+
+import { connect } from 'react-redux'
+
+import * as actions from '../actions/visitsActions'
 
 class Place extends React.Component {
 
@@ -32,8 +37,15 @@ class Place extends React.Component {
       
       	}
       	this.loadPlace(slug)
+      	
       	this.openModal = this.openModal.bind(this)
       	this.closeModal = this.closeModal.bind(this)
+
+      	this.loadVisits(slug)
+
+      	this.displayVisits()
+
+
      }
 
 	loadPlace(slug){
@@ -60,6 +72,22 @@ class Place extends React.Component {
  	 
  	 }
 
+ 	 loadVisits(slug){
+
+ 	 	/*loadVisitsPlace(slug).then((result)=>{
+
+ 	 		console.log(result)
+ 	 	})*/
+
+ 	 	this.props.dispatch(actions.loadVisits(slug))
+ 	 }
+
+ 	 displayVisits(){
+
+ 	 	console.log(this.props.visits)
+      
+ 	 }
+
 	render(){
 
 		return (
@@ -72,6 +100,12 @@ class Place extends React.Component {
 					
 
 				</VisitModalContainer>
+
+				 <div>
+				 	
+				 	{this.displayVisits()}
+				 
+				 </div>
 
 				<Card >
 				    
@@ -124,6 +158,12 @@ class Place extends React.Component {
 
 				 </Card>
 
+				 <div>
+				 	
+				 	{this.displayVisits()}
+				 
+				 </div>
+
 			</div>
 			      
 			
@@ -133,5 +173,15 @@ class Place extends React.Component {
 
 }
 
-export default withRouter(Place);
+function mapStateToProps(state,ownProps){
+
+	return {
+
+		visits: state.visits
+	}
+}
+
+export default connect(mapStateToProps)(withRouter(Place))
+
+
 

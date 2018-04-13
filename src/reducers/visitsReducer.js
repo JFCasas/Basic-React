@@ -6,6 +6,10 @@ export default function visitsReducer(state = [] , action ){
 
 			return [action.visit].concat(state)
 
+		case 'LOAD_VISITS':
+
+			return action.visits
+
 		default: 
 
 			return state

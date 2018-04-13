@@ -4070,3 +4070,128 @@ createVisit(){
 
 
 
+
+OBTENER LAS VISITAS DE UN NEGOCIO
+
+
+Dentro de nuestras requests en visits realizamos la siguiente:
+
+function loadVisitsPlace(slug){
+
+  return fetch(config.url + "/places/" + slug + "/visits" )
+
+    .then((response)=>{
+
+      return response.json()
+    
+    }).catch((error)=>{
+
+      console.log(error)
+    })
+  
+}
+
+
+Estas visitas tiene que aparecer en la vista del negocio:
+
+Place.js
+
+import { loadVisitsPlace } from '../requests/visits'
+
+constructor(props){
+
+      super(props)
+
+      //console.log(props.match.params.slug)
+
+      const slug = props.match.params.slug
+
+      //console.log(slug)
+
+      this.state = {
+
+          place: {},
+          modalIsOpen: false
+      
+        }
+        this.loadPlace(slug)
+        this.openModal = this.openModal.bind(this)
+        this.closeModal = this.closeModal.bind(this)
+
+        this.loadVisits(slug)
+
+
+}
+
+loadVisits(slug){
+
+    loadVisitsPlace(slug).then((result)=>{
+
+      console.log(result)
+    })
+}
+
+
+
+Integramos en Redux de la manera habitual Place.js
+
+Place.js
+
+import { connect } from 'react-redux'
+
+........................
+
+function mapStateToProps(state,ownProps){
+
+  return {
+
+    visits: state.visits
+  }
+}
+
+export default connect(mapStateToProps)(withRouter(Place))
+
+
+
+........................
+
+
+Completamos de manera correcta visitsActions y visitsRediucer.js
+
+
+Lo integramos en el componente:
+
+
+loadVisits(slug){
+
+    /*loadVisitsPlace(slug).then((result)=>{
+
+      console.log(result)
+    })*/
+
+    this.props.dispatch(actions.loadVisits(slug))
+}
+
+
+Creamos una función displayVisits de la siguiente manera para ver que estamos realizando las cosas de manera correcta.
+
+displayVisits(){
+
+    console.log(this.props.visits)
+
+      
+}
+
+
+La integramos en el render()
+
+<div>
+          
+    {this.displayVisits()}
+         
+</div>
+
+
+En la consola tenemos nuestras visitas
+
+

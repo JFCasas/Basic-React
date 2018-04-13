@@ -5,6 +5,11 @@ export function addVisitSuccess(visit){
 	return {type: 'ADD_VISIT' , visit}
 }
 
+export function loadVisitsPlaceSuccess(visits){
+
+	return {type: 'LOAD_VISITS', visits}
+}
+
 
 export function addVisit(data){
 
@@ -18,5 +23,17 @@ export function addVisit(data){
 
 			dispatch(addVisitSuccess(result))
 		})
+	}
+}
+
+export function loadVisits(slug){
+
+	return(dispatch,getState) =>{
+
+		requests.loadVisitsPlace(slug).then((result)=>{
+
+			dispatch(loadVisitsPlaceSuccess(result))
+		})
+
 	}
 }
