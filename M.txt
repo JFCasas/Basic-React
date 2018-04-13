@@ -4195,3 +4195,80 @@ La integramos en el render()
 En la consola tenemos nuestras visitas
 
 
+
+
+
+MOSTRAR LAS VISITAS parte 1
+
+Vamos a crear dos nuevos componentes
+
+VisitsCollection.js
+
+VisitCard.js
+
+
+De momento en Place.js
+
+<VisitsCollection visits = {this.props.visits}></VisitsCollection>
+
+
+
+VisitsCollection.js
+
+import React from 'react'
+
+import VisitCard from './VisitCard'
+
+export default class VisitsCollection extends React.Component{
+
+  visits(){
+
+      return this.props.visits.map((visit,index)=>{
+
+        return(
+
+          <VisitCard visit={visit} key={index} ></VisitCard>
+        )
+
+      })
+  }
+
+
+  render(){
+
+    return(
+
+      <div>
+        
+         {this.visits()}
+      
+      </div>
+
+    )
+  }
+}
+
+VisitCard.js
+
+import React from 'react'
+
+import {Card,  CardText } from 'material-ui/Card';
+
+export default class VisitCard extends React.Component{
+
+  render(){
+
+    return(
+
+      <Card style={{"fontFamily":"'Roboto', sans-serif"}} key={this.props.index} >
+
+            <CardText >{this.props.visit.observation}</CardText>
+                  
+            
+          
+        </Card>
+
+    )
+  }
+}
+

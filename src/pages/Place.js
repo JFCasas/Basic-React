@@ -18,6 +18,8 @@ import { connect } from 'react-redux'
 
 import * as actions from '../actions/visitsActions'
 
+import VisitsCollection from '../components/VisitsCollection'
+
 class Place extends React.Component {
 
 	constructor(props){
@@ -43,7 +45,7 @@ class Place extends React.Component {
 
       	this.loadVisits(slug)
 
-      	this.displayVisits()
+      	
 
 
      }
@@ -82,11 +84,11 @@ class Place extends React.Component {
  	 	this.props.dispatch(actions.loadVisits(slug))
  	 }
 
- 	 displayVisits(){
+ 	 /*displayVisits(){
 
  	 	console.log(this.props.visits)
       
- 	 }
+ 	 }*/
 
 	render(){
 
@@ -101,11 +103,7 @@ class Place extends React.Component {
 
 				</VisitModalContainer>
 
-				 <div>
-				 	
-				 	{this.displayVisits()}
 				 
-				 </div>
 
 				<Card >
 				    
@@ -158,11 +156,7 @@ class Place extends React.Component {
 
 				 </Card>
 
-				 <div>
-				 	
-				 	{this.displayVisits()}
-				 
-				 </div>
+				 <VisitsCollection visits = {this.props.visits}></VisitsCollection>
 
 			</div>
 			      
