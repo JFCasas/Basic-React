@@ -8,7 +8,8 @@ export default class VisitCard extends React.Component{
 
 		return(
 
-			<Card style={{"fontFamily":"'Roboto', sans-serif"}} key={this.props.index} >
+			<Card style={{"fontFamily":"'Roboto', sans-serif", "marginTop": ".5em"}} 
+				key={this.props.index} >
 
 		        <CardText >{this.props.visit.observation}</CardText>
 		              

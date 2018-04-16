@@ -106,12 +106,31 @@ class Place extends React.Component {
 				 
 
 				<Card >
-				    
-				    <CardMedia>
+
+					<div className = "container1">
+
+						<div>
+
+							<CardMedia>
 				      
-				      <img className = "imagen2"  src={"http://127.0.0.1:3001/" + this.state.place.coverImage } alt ="" />
+				      			<img className = "imagen2"  
+				      				src={"http://127.0.0.1:3001/" + this.state.place.coverImage } alt ="" />
 				    
-				    </CardMedia>
+				    		</CardMedia>
+							
+
+						</div>
+
+						<div className= "visitsDisplay">
+							
+							<VisitsCollection visits = {this.props.visits}></VisitsCollection>
+						
+						</div>
+						
+
+					</div>
+				    
+				    
 
 				    <div className = "container1">
 
@@ -156,7 +175,7 @@ class Place extends React.Component {
 
 				 </Card>
 
-				 <VisitsCollection visits = {this.props.visits}></VisitsCollection>
+				 
 
 			</div>
 			      
