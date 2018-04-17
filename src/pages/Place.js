@@ -10,6 +10,7 @@ import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Car
 import FlatButton from 'material-ui/FlatButton';
 
 
+
 import VisitModalContainer from '../containers/VisitModalContainer'
 
 import { loadVisitsPlace } from '../requests/visits'
@@ -19,6 +20,9 @@ import { connect } from 'react-redux'
 import * as actions from '../actions/visitsActions'
 
 import VisitsCollection from '../components/VisitsCollection'
+
+import * as favActions from '../actions/favsActions'
+
 
 class Place extends React.Component {
 
@@ -42,6 +46,7 @@ class Place extends React.Component {
       	
       	this.openModal = this.openModal.bind(this)
       	this.closeModal = this.closeModal.bind(this)
+      	this.createFav = this.createFav.bind(this)
 
       	this.loadVisits(slug)
 
@@ -90,6 +95,28 @@ class Place extends React.Component {
       
  	 }*/
 
+ 	 createFav(){
+
+		const data = {
+
+			_place : this.state.place._id
+		}
+
+		/*createFav(data,this.props.user.jwt).then((response)=>{
+
+			console.log(response)
+		
+		}).catch((error)=>{
+
+			console.log(error)
+		})*/
+
+		this.props.dispatch(favActions.addFav(data))
+
+		
+
+	}
+
 	render(){
 
 		return (
@@ -117,6 +144,13 @@ class Place extends React.Component {
 				      				src={"http://127.0.0.1:3001/" + this.state.place.coverImage } alt ="" />
 				    
 				    		</CardMedia>
+
+				    		<FlatButton label="Añadir a Favoritos" primary={true}
+				    					style={{  "marginTop" : "2em"}}
+				    					onClick={this.createFav}
+				    		 />
+
+
 							
 
 						</div>
@@ -190,7 +224,8 @@ function mapStateToProps(state,ownProps){
 
 	return {
 
-		visits: state.visits
+		visits: state.visits,
+		user: state.user
 	}
 }
 

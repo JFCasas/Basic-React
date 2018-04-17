@@ -4,4 +4,6 @@ import user from './userReducer'
 
 import visits from './visitsReducer'
 
-export default {places: places, user:user, visits:visits}
+import favs from './favsReducer'
+
+export default {places: places, user:user, visits:visits, favs:favs}
