@@ -515,7 +515,7 @@ import {indigo400} from 'material-ui/styles/colors'
 
 Card
 
-mport {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
 <Card style={{"font-family":"'Roboto', sans-serif"}}>
   <CardHeader  style={{"font-weight":"bold"}}
@@ -4288,4 +4288,75 @@ Tenemos que realizar ahora todo el flujo de redux de la manera habitual.
 requests/favs.js
 
 ......................
+
+
+
+
+
+
+
+
+
+
+EXTENSIONES DE OTROS PROYECTOS
+
+
+DESENCADENAR ACCION EN TEXTFIELD AL PRESIONAR KEY
+
+import React from 'react'
+
+import {Card} from 'material-ui/Card';
+import TextField from 'material-ui/TextField';
+
+export default class ListGenerator extends React.Component{
+
+  createNewList(){
+
+    const nameList = this.refs.nameListField.getValue()
+    
+    if(nameList){
+
+      this.props.createList(nameList)
+    
+    }else{
+
+      alert("Debes de proporcionar un nombre")
+    } 
+
+    
+  }
+
+  onKeyPress1 = (e) => {
+        
+        if(e.key === 'Enter'){
+            this.createNewList()
+            
+        }
+    }
+
+
+  render(){
+
+    return(
+
+      <Card style={{"padding":"2em"}}
+          
+      >
+        
+        <TextField 
+          hintText="add a List"
+          ref = 'nameListField'
+          onKeyPress={ (e) => this.onKeyPress1(e) }
+
+        
+        />
+
+        
+      
+      </Card>
+
+    )
+  }
+}
+
 
